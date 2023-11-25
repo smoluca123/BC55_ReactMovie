@@ -1,0 +1,4 @@
+/* file.css hoặc file.scss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
