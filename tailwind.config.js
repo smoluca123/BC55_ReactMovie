@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
+const defaultColors = require('tailwindcss/colors');
 import colorsConfig from './src/config/colors.js';
 const getConfig = (colorsConfig) => {
   const config = {};
@@ -22,6 +23,7 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     colors: {
+      ...defaultColors,
       ...getConfig(colorsConfig),
     },
     container: {
