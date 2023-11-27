@@ -19,8 +19,8 @@ export default function Header() {
     setNavItem(newNav);
   };
   return (
-    <div>
-      <nav className="bg-gray-800 fixed z-10 w-full">
+    <div className="fixed top-0 z-10 w-full h-auto">
+      <nav className="bg-gray-800 ">
         <div className="mx-auto  px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-around sm:justify-between">
             {/* Btn Toggle mobile nav */}
@@ -103,8 +103,10 @@ export default function Header() {
                         key={index}
                         href={item.href}
                         className={cn(
-                          'rounded-md px-3 py-2 text-sm font-medium hover:text-title transition-colors duration-300',
-                          item.current ? 'text-title bg-gray-900' : 'text-white'
+                          'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
+                          item.current
+                            ? 'text-title-main bg-gray-900'
+                            : 'text-white'
                         )}
                         onClick={() => {
                           handleSelectNavItem(index);
@@ -221,7 +223,7 @@ export default function Header() {
                   <div className="relative sm:max-w-5xl sm:static">
                     <FontAwesomeIcon
                       icon="fa-regular fa-user"
-                      className="text-lightText rounded-fulltransition duration-300 w-5 h-5 p-4 cursor-pointer sm:hidden"
+                      className="text-lightText-main rounded-fulltransition duration-300 w-5 h-5 p-4 cursor-pointer sm:hidden"
                       onClick={() => setIsOpenUserNav(!isOpenUserNav)}
                     />
 
@@ -232,14 +234,14 @@ export default function Header() {
                       )}
                     >
                       <button
-                        className="rounded-md px-3 py-2 text-sm font-medium text-lightText hover:text-white transition duration-500 mr-3"
+                        className="rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-500 mr-3"
                         onClick={() => {
                           setIsLogin(true);
                         }}
                       >
                         Đăng Nhập
                       </button>
-                      <button className="rounded-md px-3 py-2 text-sm font-medium text-lightText hover:text-white transition duration-500">
+                      <button className="rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-500">
                         Đăng Ký
                       </button>
                     </div>
@@ -264,8 +266,8 @@ export default function Header() {
                   key={index}
                   href={item.href}
                   className={cn(
-                    'block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title transition-colors duration-300',
-                    item.current ? 'text-title bg-gray-900' : 'text-white'
+                    'block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title-main transition-colors duration-300',
+                    item.current ? 'text-title-main bg-gray-900' : 'text-white'
                   )}
                   onClick={() => {
                     handleSelectNavItem(index);
@@ -278,7 +280,12 @@ export default function Header() {
         </div>
       </nav>
       <div
-        className="fixed overlay h-[100vh] w-[100vw] top-0 left-0 right-0 bottom-0 bg-transparent z-0"
+        className={cn(
+          'fixed overlay h-[100vh] w-[100vw] top-0 left-0 right-0 bottom-0 bg-transparent z-0',
+          {
+            hidden: !isOpenNavMobile || !isOpenUserNav,
+          }
+        )}
         onClick={(e) => {
           setIsOpenNavMobile(false);
           setIsOpenUserNav(false);

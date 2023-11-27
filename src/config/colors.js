@@ -19,6 +19,7 @@ export default {
   background: {
     mainBg: {
       main: '#020419',
+      100: '#020419a6',
     },
   },
 };
