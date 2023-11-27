@@ -55,6 +55,9 @@ module.exports = withMT({
           '50%': { transform: 'rotate(3deg)' },
         },
       },
+      screens: {
+        _sm: '640px',
+      },
     },
   },
   plugins: [],

@@ -21,10 +21,10 @@ export default function Header() {
   return (
     <div className="fixed top-0 z-10 w-full h-auto">
       <nav className="bg-gray-800 ">
-        <div className="mx-auto  px-2 sm:px-6 lg:px-8">
-          <div className="relative flex h-16 items-center justify-around sm:justify-between">
+        <div className="mx-auto  px-2 _sm:px-6 lg:px-8">
+          <div className="relative flex h-16 items-center justify-around _sm:justify-between">
             {/* Btn Toggle mobile nav */}
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <div className="absolute inset-y-0 left-0 flex items-center _sm:hidden">
               {/* Mobile menu button*/}
               <button
                 type="button"
@@ -83,18 +83,18 @@ export default function Header() {
             </div>
 
             {/* Logo */}
-            <div className="flex items-center flex-1 justify-center sm:flex-[0]  sm:items-stretch sm:justify-start">
+            <div className="flex items-center flex-1 justify-center _sm:flex-[0]  _sm:items-stretch _sm:justify-start">
               <div className="flex flex-shrink-0 items-center">
                 <img
-                  className="h-8 w-auto sm:max-w-5xl"
+                  className="h-8 w-auto _sm:max-w-5xl"
                   src="https://demo1.cybersoft.edu.vn/logo.png"
                   alt="Your Company"
                 />
               </div>
             </div>
             {/* Navbar */}
-            <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="hidden sm:ml-6 sm:block">
+            <div className="flex items-center justify-center _sm:items-stretch _sm:justify-start">
+              <div className="hidden _sm:ml-6 _sm:block">
                 <div className="flex space-x-4">
                   {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                   {navItem &&
@@ -118,7 +118,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="absolute inset-y-0 right-0 flex items-center pr-2 _sm:static _sm:inset-auto _sm:ml-6 _sm:pr-0">
               {isLogin ? (
                 <>
                   <button
@@ -220,16 +220,16 @@ export default function Header() {
                 </>
               ) : (
                 <>
-                  <div className="relative sm:max-w-5xl sm:static">
+                  <div className="relative _sm:max-w-5xl _sm:static">
                     <FontAwesomeIcon
                       icon="fa-regular fa-user"
-                      className="text-lightText-main rounded-fulltransition duration-300 w-5 h-5 p-4 cursor-pointer sm:hidden"
+                      className="text-lightText-main rounded-fulltransition duration-300 w-5 h-5 p-4 cursor-pointer _sm:hidden"
                       onClick={() => setIsOpenUserNav(!isOpenUserNav)}
                     />
 
                     <div
                       className={cn(
-                        'absolute top-0, right-0 w-[120px] bg-gray-800 sm:static sm:flex sm:bg-transparent sm:w-auto z-10',
+                        'absolute top-0, right-0 w-[120px] bg-gray-800 _sm:static _sm:flex _sm:bg-transparent _sm:w-auto z-10',
                         { hidden: !isOpenUserNav }
                       )}
                     >
