@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Carousels() {
   return (
-    <div className="pt-[60px]">
+    <div className="sm:pt-[60px]">
       <Carousel
         className="rounded-xl"
         loop={true}
