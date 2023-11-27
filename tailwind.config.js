@@ -3,17 +3,36 @@ const withMT = require('@material-tailwind/react/utils/withMT');
 const defaultColors = require('tailwindcss/colors');
 import colorsConfig from './src/config/colors.js';
 const getConfig = (colorsConfig) => {
+  // const config = {};
+  // Object.keys(colorsConfig).forEach((key) => {
+  //   const currentConfig = colorsConfig[key];
+  //   Object.keys(currentConfig).forEach((key) => {
+  //     config[key] = currentConfig[key].main;
+  //   });
+  // });
+  // return config;
+  ///
+  // const config = {};
+  // Object.keys(colorsConfig).forEach((key) => {
+  //   let currentConfig = colorsConfig[key];
+  //   Object.keys(currentConfig).forEach((key) => {
+  //     const current2 = currentConfig[key];
+  //     const children = {};
+  //     Object.keys(current2).forEach((key) => {
+  //       children[key] = current2[key];
+  //     });
+  //     config[key] = { ...children };
+  //   });
+  // });
+  // return config;
+
+  //! config ngon nhất, đừng sửa! -> Luca Thân Ái~~
   const config = {};
-  // Object.keys(colorsConfig.color).forEach((key) => {
-  //   config[key] = colorsConfig.color[key].main;
-  // });
-  // Object.keys(colorsConfig.background).forEach((key) => {
-  //   config[key] = colorsConfig.background[key].main;
-  // });
   Object.keys(colorsConfig).forEach((key) => {
-    const currentConfig = colorsConfig[key];
+    let currentConfig = colorsConfig[key];
     Object.keys(currentConfig).forEach((key) => {
-      config[key] = currentConfig[key].main;
+      const current = currentConfig[key];
+      config[key] = { ...current };
     });
   });
   return config;

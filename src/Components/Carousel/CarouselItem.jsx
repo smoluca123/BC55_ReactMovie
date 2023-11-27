@@ -12,7 +12,7 @@ export default function CarouselItem({ item }) {
   //     height: window.innerHeight,
   //   });
   const [pathImg, setPathImg] = useState('');
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
   useEffect(() => {
     if (width <= 600) {
       setPathImg(pathConfig.current.poster);
@@ -25,12 +25,12 @@ export default function CarouselItem({ item }) {
       <div className="poster">
         <img src={pathImg + item.backdrop_path} alt="" />
       </div>
-      <div className="info flex flex-col justify-center absolute top-1/3 mx-[40px] sm:top-1/2 sm:left-[180px] sm:translate-y-[-50%] sm:w-1/3 h-[240px] bg-[#020419a6] p-5 rounded-xl overflow-hidden ">
-        <h1 className="text-title mb-5 text-lg font-medium ">
-          {item.title} <span className="text-lightText">- </span>
+      <div className="info flex flex-col justify-center absolute sm:top-1/2 sm:left-[180px] sm:translate-y-[-50%] sm:w-1/3 h-[240px] min-h-[240px] bg-[#020419a6] p-5 rounded-xl overflow-hidden top-1/3 mx-[40px] hover:bg-mainBg-main hover:h-auto transition-all duration-300">
+        <h1 className="text-title-main mb-5 text-lg font-medium ">
+          {item.title} <span className="text-lightText-main">- </span>
           {item.release_date}
         </h1>
-        <p className="overview text-lightText truncate whitespace-pre-line hover:text-clip overflow-hidden line-clamp-5">
+        <p className="overview text-lightText-main truncate whitespace-pre-line overflow-hidden line-clamp-5 hover:text-clip hover:line-clamp-none transition-all duration-300">
           {item.overview}
         </p>
       </div>
