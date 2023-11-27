@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-
+const withMT = require('@material-tailwind/react/utils/withMT');
 const defaultColors = require('tailwindcss/colors');
 import colorsConfig from './src/config/colors.js';
 const getConfig = (colorsConfig) => {
@@ -19,7 +19,7 @@ const getConfig = (colorsConfig) => {
   return config;
 };
 
-module.exports = {
+module.exports = withMT({
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     colors: {
@@ -29,7 +29,14 @@ module.exports = {
     container: {
       center: true,
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+      },
+    },
   },
   plugins: [],
-};
+});

@@ -19,8 +19,8 @@ export default function Header() {
     setNavItem(newNav);
   };
   return (
-    <div>
-      <nav className="bg-gray-800 fixed z-10 w-full">
+    <div className="fixed top-0 z-10 w-full h-auto">
+      <nav className="bg-gray-800 ">
         <div className="mx-auto  px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-around sm:justify-between">
             {/* Btn Toggle mobile nav */}
@@ -278,7 +278,12 @@ export default function Header() {
         </div>
       </nav>
       <div
-        className="fixed overlay h-[100vh] w-[100vw] top-0 left-0 right-0 bottom-0 bg-transparent z-0"
+        className={cn(
+          'fixed overlay h-[100vh] w-[100vw] top-0 left-0 right-0 bottom-0 bg-transparent z-0',
+          {
+            hidden: !isOpenNavMobile || !isOpenUserNav,
+          }
+        )}
         onClick={(e) => {
           setIsOpenNavMobile(false);
           setIsOpenUserNav(false);
