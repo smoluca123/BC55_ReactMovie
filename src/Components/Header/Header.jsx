@@ -19,7 +19,7 @@ export default function Header() {
     setNavItem(newNav);
   };
   return (
-    <div className="fixed top-0 z-10 w-full h-auto">
+    <div className="fixed top-0 z-[998] w-full h-auto">
       <nav className="bg-gray-800 ">
         <div className="mx-auto  px-2 _sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-around _sm:justify-between">
