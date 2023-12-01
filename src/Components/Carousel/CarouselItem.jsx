@@ -29,7 +29,7 @@ export default function CarouselItem({ item }) {
           alt=""
         />
       </div>
-      <div className="info flex flex-col justify-center absolute _sm:top-1/2 _sm:left-[180px] _sm:translate-y-[-50%] _sm:w-1/3 h-[240px] min-h-[240px] bg-[#020419a6] p-5 rounded-xl overflow-hidden top-1/3 mx-[40px] hover:bg-mainBg-main hover:h-auto transition-all duration-300">
+      <div className="info flex flex-col justify-center absolute _sm:top-1/2 _sm:left-[180px] _sm:translate-y-[-50%] _sm:w-1/3 h-auto min-h-[240px] bg-[#020419a6] p-5 rounded-xl overflow-hidden top-1/3 mx-[40px] hover:bg-mainBg-main hover:h-auto transition-all duration-300">
         <h1 className="text-title-main mb-5 text-lg font-medium ">
           {item.title} <span className="text-lightText-main">- </span>
           {item.release_date}
@@ -37,6 +37,10 @@ export default function CarouselItem({ item }) {
         <p className="overview text-lightText-main truncate whitespace-pre-line overflow-hidden line-clamp-5 hover:text-clip hover:line-clamp-[10] transition-all duration-300">
           {item.overview}
         </p>
+
+        <button className="text-gray-900 font-medium py-2 px-4 mt-5 mr-auto bg-white rounded-full hover:bg-gray-900 hover:text-white transition duration-300">
+          Watch Trailer
+        </button>
       </div>
     </div>
   );
