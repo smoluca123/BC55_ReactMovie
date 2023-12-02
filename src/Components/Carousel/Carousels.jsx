@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Carousel, IconButton } from '@material-tailwind/react/';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import data from '../../data/movies.json';
 import CarouselItem from './CarouselItem';
@@ -22,7 +22,7 @@ export default function Carousels() {
   return (
     <div className="sm:pt-[60px] z-50">
       <Carousel
-        className="rounded-xl"
+        // className="rounded-xl _sm:rounded-none"
         loop={true}
         prevArrow={({ handlePrev }) => (
           <IconButton

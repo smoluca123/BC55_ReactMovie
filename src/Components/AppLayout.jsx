@@ -1,9 +1,9 @@
 import React from 'react';
-import Slider from 'react-slick';
 import { Header } from './Header';
 import { Carousels } from './Carousel/';
 import { useSelector } from 'react-redux';
 import { Loading } from './Loading';
+import { Filters } from './MovieFilters';
 export default function AppLayout() {
   const loading = useSelector((state) => state.loading);
   return (
@@ -12,6 +12,9 @@ export default function AppLayout() {
         {loading.isLoading && <Loading />}
         <Header />
         <Carousels />
+        <div className="container">
+          <Filters />
+        </div>
       </div>
     </div>
   );
