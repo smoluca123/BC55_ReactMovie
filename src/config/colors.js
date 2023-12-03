@@ -21,5 +21,8 @@ export default {
       main: '#020419',
       100: '#020419a6',
     },
+    secondaryBg: {
+      main: '#0f1829',
+    },
   },
 };

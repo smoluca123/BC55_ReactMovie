@@ -12,6 +12,8 @@ export default function Header() {
     { name: 'Tin Tức', href: '#', current: false },
     { name: 'Ứng Dụng', href: '#', current: false },
   ]);
+  const isOverflow = isOpenNavMobile || isOpenUserNav;
+  console.log(isOpenNavMobile || isOpenUserNav);
   const handleSelectNavItem = (index) => {
     const newNav = [...navItem];
     navItem.find((nav) => nav.current).current = false;
@@ -20,7 +22,7 @@ export default function Header() {
   };
   return (
     <div className="fixed top-0 z-[998] w-full h-auto">
-      <nav className="bg-gray-800 ">
+      <nav className="bg-mainBg-main ">
         <div className="mx-auto  px-2 _sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-around _sm:justify-between">
             {/* Btn Toggle mobile nav */}
@@ -105,7 +107,7 @@ export default function Header() {
                         className={cn(
                           'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
                           item.current
-                            ? 'text-title-main bg-gray-900'
+                            ? 'text-title-main bg-secondaryBg-main'
                             : 'text-white'
                         )}
                         onClick={() => {
@@ -118,7 +120,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 _sm:static _sm:inset-auto _sm:ml-6 _sm:pr-0">
+            <div className="absolute inset-y-0 right-0 flex justify-end items-center pr-2 _sm:static _sm:inset-auto _sm:ml-6 _sm:pr-0 min-w-[180px]">
               {isLogin ? (
                 <>
                   <button
@@ -162,16 +164,6 @@ export default function Header() {
                         />
                       </button>
                     </div>
-                    {/*
-      Dropdown menu, show/hide based on menu state.
-
-      Entering: "transition ease-out duration-100"
-        From: "transform opacity-0 scale-95"
-        To: "transform opacity-100 scale-100"
-      Leaving: "transition ease-in duration-75"
-        From: "transform opacity-100 scale-100"
-        To: "transform opacity-0 scale-95"
-    */}
                     <div
                       className={cn(
                         'absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100',
@@ -234,7 +226,7 @@ export default function Header() {
                       )}
                     >
                       <button
-                        className="rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-500 mr-3"
+                        className="rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-500"
                         onClick={() => {
                           setIsLogin(true);
                         }}
@@ -267,7 +259,9 @@ export default function Header() {
                   href={item.href}
                   className={cn(
                     'block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title-main transition-colors duration-300',
-                    item.current ? 'text-title-main bg-gray-900' : 'text-white'
+                    item.current
+                      ? 'text-title-main bg-secondaryBg-main'
+                      : 'text-white'
                   )}
                   onClick={() => {
                     handleSelectNavItem(index);
@@ -281,9 +275,9 @@ export default function Header() {
       </nav>
       <div
         className={cn(
-          'fixed overlay h-[100vh] w-[100vw] top-0 left-0 right-0 bottom-0 bg-transparent z-0',
+          'fixed overlay h-[100vh] w-[100vw] top-0 left-0 right-0 bottom-0 bg-transparent z-[-1]',
           {
-            hidden: !isOpenNavMobile || !isOpenUserNav,
+            hidden: !isOverflow,
           }
         )}
         onClick={(e) => {

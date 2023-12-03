@@ -4,9 +4,9 @@ import data from '../../data/movies.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Filters() {
   const stylesSelectCotainer =
-    'relative w-full py-5 px-2 pr-2 after:absolute after:bottom-0 after:left-1/2 after:right-[50%] after:h-[2px] hover:after:left-0 hover:after:right-0 after:bg-red-500 after:transition-all after:duration-300';
+    'relative w-full py-5 px-2 pr-2 after:absolute after:bottom-0 after:left-1/2 after:right-[50%] after:h-[2px] hover:after:left-0 hover:after:right-0 after:bg-mainBg-main after:transition-all after:duration-300';
   return (
-    <div>
+    <div className="relative z-[1]">
       <div className="translate-y-[-50%] rounded-md bg-white hidden md:flex items-center justify-between shadow-[rgba(0,0,0,0.24)_0px_3px_8px]">
         <div className={stylesSelectCotainer}>
           <Select className="w-full" label="Phim">
@@ -32,7 +32,7 @@ export default function Filters() {
           </button>
         </div>
       </div>
-      <div className="relative flex items-center shadow-md md:hidden">
+      <div className="relative translate-y-[-50%] flex items-center shadow-md md:hidden _sm:w-full">
         <input
           className="w-full h-full outline-none p-4"
           type="text"
