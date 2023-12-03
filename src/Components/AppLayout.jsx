@@ -4,6 +4,7 @@ import { Carousels } from './Carousel/';
 import { useSelector } from 'react-redux';
 import { Loading } from './Loading';
 import { Filters } from './MovieFilters';
+import MovieList from './Movies/MovieList';
 export default function AppLayout() {
   const loading = useSelector((state) => state.loading);
   return (
@@ -12,8 +13,11 @@ export default function AppLayout() {
         {loading.isLoading && <Loading />}
         <Header />
         <Carousels />
-        <div className="container">
-          <Filters />
+        <div className="wrapper bg-mainBg-main">
+          <div className="_sm:container">
+            <Filters />
+            <MovieList />
+          </div>
         </div>
       </div>
     </div>

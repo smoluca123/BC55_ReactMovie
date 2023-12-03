@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Carousel, IconButton } from '@material-tailwind/react/';
 import { useDispatch } from 'react-redux';
+import { setLoading } from '../../redux/slices/loadingSlice';
 
 import data from '../../data/movies.json';
 import CarouselItem from './CarouselItem';
@@ -10,15 +11,12 @@ export default function Carousels() {
   const dispatch = useDispatch();
   useEffect(() => {
     const timer = setTimeout(() => {
-      dispatch({
-        type: 'loading/SET_LOADING',
-        payload: false,
-      });
+      dispatch(setLoading(false));
     }, 2000);
     return () => {
       clearTimeout(timer);
     };
-  });
+  }, []);
   return (
     <div className="sm:pt-[60px] z-50">
       <Carousel
