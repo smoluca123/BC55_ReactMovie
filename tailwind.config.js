@@ -49,10 +49,43 @@ module.exports = withMT({
       center: true,
     },
     extend: {
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
+        neonGlow: 'neonGlow 1s ease-in-out infinite',
+        neonGlowHover: 'neonGlowHover 1s ease-in-out infinite',
+      },
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' },
+        },
+        neonGlow: {
+          '0%': {
+            boxShadow:
+              '0 0 5px rgb(59 130 246 / 0.5), 0 0 10px rgba(0, 255, 204, 0.8), 0 0 15px rgb(59 130 246 / 0.5)',
+          },
+          '50%': {
+            boxShadow:
+              '0 0 8px rgb(59 130 246 / 0.5), 0 0 15px rgba(0, 255, 204, 0.8), 0 0 20px rgb(59 130 246 / 0.5)',
+          },
+          '100%': {
+            boxShadow:
+              '0 0 5px rgb(59 130 246 / 0.5), 0 0 10px rgba(0, 255, 204, 0.8), 0 0 15px rgb(59 130 246 / 0.5)',
+          },
+        },
+        neonGlowHover: {
+          '0%': {
+            boxShadow:
+              '0 0 5px #32ffab, 0 0 10px rgba(0, 255, 204, 0.8), 0 0 15px #32ffab',
+          },
+          '50%': {
+            boxShadow:
+              '0 0 8px #32ffab, 0 0 15px rgba(0, 255, 204, 0.8), 0 0 20px #32ffab',
+          },
+          '100%': {
+            boxShadow:
+              '0 0 5px #32ffab, 0 0 10px rgba(0, 255, 204, 0.8), 0 0 15px #32ffab',
+          },
         },
       },
       screens: {
