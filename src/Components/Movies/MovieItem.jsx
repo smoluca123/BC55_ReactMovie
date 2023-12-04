@@ -11,7 +11,7 @@ export default function MovieItem({ movie }) {
   const { title, poster_path, overview } = movie;
   return (
     <div>
-      <Card className="group mt-6 w-full shadow-[0px_-2px_20px_0] shadow-blue-500/50 animate-neonGlow hover:animate-neonGlowHover hover:shadow-title-main transition-shadow duration-300 overflow-hidden">
+      <Card className="group mt-6 w-full shadow-[0px_-2px_20px_0] shadow-blue-500/50 animate-neonGlow border-2 hover:border-title-main hover:shadow-title-main transition duration-300 overflow-hidden cursor-pointer">
         <CardHeader
           color="blue-gray"
           className="relative mt-0 mx-0 rounded-br-none rounded-bl-none h-auto max-h-[400px]"
@@ -38,9 +38,9 @@ export default function MovieItem({ movie }) {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0 flex flex-col">
-          <Button className="mb-2 transition duration-300 group-hover:text-title-main hover:!text-rose-500">
+          {/* <Button className="mb-2 transition duration-300 group-hover:text-title-main hover:!text-rose-500">
             Xem Thêm
-          </Button>
+          </Button> */}
           <Button className="transition duration-300 group-hover:text-title-main hover:!text-rose-500">
             Đặt Vé
           </Button>
