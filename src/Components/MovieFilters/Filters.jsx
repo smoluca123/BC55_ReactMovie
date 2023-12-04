@@ -40,8 +40,7 @@ export default function Filters() {
         />
         <IconButton
           size="lg"
-          className="text-red-500 absolute right-0 bg-transparent shadow-none"
-          icon="fa-solid fa-magnifying-glass"
+          className="text-red-500 !absolute right-0 bg-transparent shadow-none"
         >
           <FontAwesomeIcon
             className="text-lg"
