@@ -11,10 +11,10 @@ export default function MovieItem({ movie }) {
   const { title, poster_path, overview } = movie;
   return (
     <div>
-      <Card className="group mt-6 w-full shadow-[0px_-2px_20px_0] shadow-blue-500/50 hover:shadow-title-main transition-shadow duration-300 overflow-hidden">
+      <Card className="group mt-6 w-full shadow-[0px_-2px_20px_0] shadow-blue-500/50 animate-neonGlow border-2 hover:border-title-main hover:shadow-title-main transition duration-300 overflow-hidden cursor-pointer">
         <CardHeader
           color="blue-gray"
-          className="relative mt-0 mx-0 rounded-br-none rounded-bl-none min-h-[400px] max-h-[500px]"
+          className="relative mt-0 mx-0 rounded-br-none rounded-bl-none h-auto max-h-[400px]"
         >
           <img
             className="w-full h-full object-cover"
@@ -28,7 +28,8 @@ export default function MovieItem({ movie }) {
           <Typography
             variant="h5"
             color="blue-gray"
-            className="mb-2 min-h-[60px] flex items-center justify-center"
+            className="mb-2 flex items-center justify-center truncate whitespace-pre-line overflow-hidden !line-clamp-1"
+            title={title}
           >
             {title}
           </Typography>
@@ -36,10 +37,10 @@ export default function MovieItem({ movie }) {
             {overview}
           </Typography>
         </CardBody>
-        <CardFooter className="pt-0">
-          <Button className="mr-2 transition duration-300 group-hover:text-title-main hover:!text-rose-500">
+        <CardFooter className="pt-0 flex flex-col">
+          {/* <Button className="mb-2 transition duration-300 group-hover:text-title-main hover:!text-rose-500">
             Xem Thêm
-          </Button>
+          </Button> */}
           <Button className="transition duration-300 group-hover:text-title-main hover:!text-rose-500">
             Đặt Vé
           </Button>
