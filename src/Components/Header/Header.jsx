@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
   const [isOpenNavMobile, setIsOpenNavMobile] = useState(false);
   const [isOpenUserNav, setIsOpenUserNav] = useState(false);
   const [navItem, setNavItem] = useState([
-    { name: 'Lịch Chiếu', href: '#', current: true },
-    { name: 'Cụm Rạp', href: '#', current: false },
-    { name: 'Tin Tức', href: '#', current: false },
-    { name: 'Ứng Dụng', href: '#', current: false },
+    { name: 'Lịch Chiếu', href: '/', current: false },
+    { name: 'Cụm Rạp', href: '/cumrap', current: false },
+    { name: 'Tin Tức', href: '/tintuc', current: false },
+    { name: 'Ứng Dụng', href: '/ungdung', current: false },
   ]);
   const isOverflow = isOpenNavMobile || isOpenUserNav;
   console.log(isOpenNavMobile || isOpenUserNav);
@@ -101,21 +102,30 @@ export default function Header() {
                   {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                   {navItem &&
                     navItem.map((item, index) => (
-                      <button
+                      <NavLink
                         key={index}
-                        href={item.href}
-                        className={cn(
-                          'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
-                          item.current
-                            ? 'text-title-main bg-secondaryBg-main'
-                            : 'text-white'
-                        )}
+                        to={item.href}
+                        // className={cn(
+                        //   'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
+                        //   item.current
+                        //     ? 'text-title-main bg-secondaryBg-main'
+                        //     : 'text-white'
+                        // )}
+                        className={({ isActive, isPending }) =>
+                          cn(
+                            'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
+                            {
+                              'text-title-main bg-secondaryBg-main': isActive,
+                              'text-white': !isActive && !isPending,
+                            }
+                          )
+                        }
                         onClick={() => {
                           handleSelectNavItem(index);
                         }}
                       >
                         {item.name}
-                      </button>
+                      </NavLink>
                     ))}
                 </div>
               </div>
@@ -254,21 +264,30 @@ export default function Header() {
             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
             {navItem &&
               navItem.map((item, index) => (
-                <button
+                <NavLink
                   key={index}
-                  href={item.href}
-                  className={cn(
-                    'block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title-main transition-colors duration-300',
-                    item.current
-                      ? 'text-title-main bg-secondaryBg-main'
-                      : 'text-white'
-                  )}
+                  to={item.href}
+                  // className={cn(
+                  //   'block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title-main transition-colors duration-300',
+                  //   item.current
+                  //     ? 'text-title-main bg-secondaryBg-main'
+                  //     : 'text-white'
+                  // )}
+                  className={({ isActive, isPending }) =>
+                    cn(
+                      'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
+                      {
+                        'text-title-main bg-secondaryBg-main': isActive,
+                        'text-white': !isActive && !isPending,
+                      }
+                    )
+                  }
                   onClick={() => {
                     handleSelectNavItem(index);
                   }}
                 >
                   {item.name}
-                </button>
+                </NavLink>
               ))}
           </div>
         </div>
