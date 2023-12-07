@@ -14,13 +14,7 @@ export default function Header() {
     { name: 'Ứng Dụng', href: '/ungdung', current: false },
   ]);
   const isOverflow = isOpenNavMobile || isOpenUserNav;
-  console.log(isOpenNavMobile || isOpenUserNav);
-  const handleSelectNavItem = (index) => {
-    const newNav = [...navItem];
-    navItem.find((nav) => nav.current).current = false;
-    newNav[index].current = true;
-    setNavItem(newNav);
-  };
+
   return (
     <div className="fixed top-0 z-[998] w-full h-auto">
       <nav className="bg-mainBg-main ">
