@@ -120,9 +120,6 @@ export default function Header() {
                             }
                           )
                         }
-                        onClick={() => {
-                          handleSelectNavItem(index);
-                        }}
                       >
                         {item.name}
                       </NavLink>
@@ -282,9 +279,6 @@ export default function Header() {
                       }
                     )
                   }
-                  onClick={() => {
-                    handleSelectNavItem(index);
-                  }}
                 >
                   {item.name}
                 </NavLink>
