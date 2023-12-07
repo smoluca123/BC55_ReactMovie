@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import useWindowSize from '../../CustomHook/useWindowSize';
+import useWindowSize from '../../../../hooks/useWindowSize';
 
 export default function CarouselItem({ item }) {
   const pathConfig = useRef({

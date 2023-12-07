@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Carousel, IconButton } from '@material-tailwind/react/';
 import { useDispatch } from 'react-redux';
-import { setLoading } from '../../redux/slices/loadingSlice';
+import { setLoading } from '../../../../redux/slices/loadingSlice';
 
-import data from '../../data/movies.json';
+import data from '../../../../data/movies.json';
 import CarouselItem from './CarouselItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

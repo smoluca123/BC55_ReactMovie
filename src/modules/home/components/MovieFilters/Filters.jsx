@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select, Option, IconButton } from '@material-tailwind/react';
-import data from '../../data/movies.json';
+import data from '../../../../data/movies.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Filters() {
   const stylesSelectCotainer =

@@ -1,5 +1,5 @@
 import React from 'react';
-import data from '../../data/movies.json';
+import data from '../../../../data/movies.json';
 import MovieItem from './MovieItem';
 export default function MovieList() {
   return (
