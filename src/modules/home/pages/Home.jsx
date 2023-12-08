@@ -1,15 +1,20 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import usePreloader from '../../../hooks/usePreloader';
 
 import { Carousels } from '../components/Carousel/';
-import { Loading } from '../../../Components/Loading';
 import { Filters } from '../components/MovieFilters';
 import MovieList from '../components/Movies/MovieList';
 export default function Home() {
-  const loading = useSelector((state) => state.loading);
+  const { preLoader } = usePreloader();
+  useEffect(() => {
+    const timer = preLoader(1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
   return (
     <div className="wrapper bg-mainBg h-[100vh]">
-      <div className="App">
-        {loading.isLoading && <Loading />}
+      <div className="App h-full">
         <Carousels />
         <div className="wrapper bg-mainBg-main">
           <div className="_sm:container">
