@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
@@ -80,13 +80,15 @@ export default function Header() {
             </div>
 
             {/* Logo */}
-            <div className="flex items-center flex-1 justify-center _sm:flex-[0]  _sm:items-stretch _sm:justify-start">
+            <div className="flex items-center flex-1 justify-center _sm:flex-[0]  _sm:items-stretch _sm:justify-start  min-w-[180px]">
               <div className="flex flex-shrink-0 items-center">
-                <img
-                  className="h-8 w-auto _sm:max-w-5xl"
-                  src="https://demo1.cybersoft.edu.vn/logo.png"
-                  alt="Your Company"
-                />
+                <Link to={'/'}>
+                  <img
+                    className="h-8 w-auto _sm:max-w-5xl"
+                    src="https://demo1.cybersoft.edu.vn/logo.png"
+                    alt="Your Company"
+                  />
+                </Link>
               </div>
             </div>
             {/* Navbar */}
