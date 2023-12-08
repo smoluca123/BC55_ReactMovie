@@ -14,7 +14,7 @@ export default function Home() {
   }, []);
   return (
     <div className="wrapper bg-mainBg h-[100vh]">
-      <div className="App">
+      <div className="App h-full">
         <Carousels />
         <div className="wrapper bg-mainBg-main">
           <div className="_sm:container">

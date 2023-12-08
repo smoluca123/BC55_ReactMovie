@@ -16,8 +16,8 @@ import Home from './modules/home/pages/Home';
 import './styles/tailwind.css';
 
 //Slick React
-import '../node_modules/slick-carousel/slick/slick.css';
-import '../node_modules/slick-carousel/slick/slick-theme.css';
+// import '../node_modules/slick-carousel/slick/slick.css';
+// import '../node_modules/slick-carousel/slick/slick-theme.css';
 import { Header } from './Components/Header';
 import { Loading } from './Components/Loading';
 import { useSelector } from 'react-redux';

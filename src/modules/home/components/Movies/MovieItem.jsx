@@ -10,7 +10,7 @@ import {
 export default function MovieItem({ movie }) {
   const { title, poster_path, overview } = movie;
   return (
-    <div>
+    <div className="mb-[40px]">
       <Card className="group mt-6 w-full shadow-[0px_-2px_20px_0] shadow-blue-500/50 animate-neonGlow border-2 hover:border-title-main hover:shadow-title-main transition duration-300 overflow-hidden cursor-pointer">
         <CardHeader
           color="blue-gray"
