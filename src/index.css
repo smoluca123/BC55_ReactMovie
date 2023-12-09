@@ -26,3 +26,13 @@ code {
 .swiper-pagination-bullet-active {
   background-color: #32ffab !important;
 }
+
+.swiper-scrollbar-horizontal {
+  background-color: #0f1829 !important;
+}
+
+.swiper-scrollbar-drag {
+  background-color: #32ffab !important;
+
+
+}
