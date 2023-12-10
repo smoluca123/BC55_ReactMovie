@@ -15,28 +15,28 @@ import Home from './modules/home/pages/Home';
 //Import tailwind css
 import './styles/tailwind.css';
 
-//Slick React
-// import '../node_modules/slick-carousel/slick/slick.css';
-// import '../node_modules/slick-carousel/slick/slick-theme.css';
-import { Header } from './Components/Header';
-import { Loading } from './Components/Loading';
-import { useSelector } from 'react-redux';
+import MainLayout from './modules/layout/pages/MainLayout';
+import NotFound from './Components/NotFound/NotFound';
+import User from './modules/user/pages/User';
+import Login from './modules/user/components/Login';
+import SignUp from './modules/user/components/SignUp';
 
 // Thêm icon vào thư viện
 library.add(fas, far);
 function App() {
-  const loading = useSelector((state) => state.loading);
   return (
     <ThemeProvider theme={materialConfig}>
       <BrowserRouter>
-        {/* Show loading */}
-        {loading.isLoading && <Loading />}
-
-        <Header />
-
         {/* Router */}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path="user" element={<User />}>
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<SignUp />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

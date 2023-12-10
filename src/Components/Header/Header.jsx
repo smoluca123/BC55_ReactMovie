@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
@@ -14,6 +14,8 @@ export default function Header() {
     { name: 'Ứng Dụng', href: '/ungdung', current: false },
   ]);
   const isOverflow = isOpenNavMobile || isOpenUserNav;
+
+  const navigate = useNavigate();
 
   return (
     <div className="fixed top-0 z-[998] w-full h-auto">
@@ -231,12 +233,17 @@ export default function Header() {
                       <button
                         className="rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-500"
                         onClick={() => {
-                          setIsLogin(true);
+                          navigate('/user/login');
                         }}
                       >
                         Đăng Nhập
                       </button>
-                      <button className="rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-500">
+                      <button
+                        className="rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-500"
+                        onClick={() => {
+                          navigate('/user/signup');
+                        }}
+                      >
                         Đăng Ký
                       </button>
                     </div>

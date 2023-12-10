@@ -1,13 +1,15 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
-import { Grid, Pagination } from 'swiper/modules';
+import { Pagination, Scrollbar, FreeMode } from 'swiper/modules';
 
 import useWindowSize from '../../../../hooks/useWindowSize';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/grid';
+// import 'swiper/css/grid';
 import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/free-mode';
 
 import data from '../../../../data/movies.json';
 import MovieItem from './MovieItem';
@@ -26,11 +28,13 @@ export default function MovieList() {
         //   rows: 2,
         // }}
         loop={true}
+        freeMode={true}
         spaceBetween={30}
         pagination={{
           clickable: true,
         }}
-        modules={[Grid, Pagination]}
+        scrollbar={{ draggable: true }}
+        modules={[Pagination, Scrollbar, FreeMode]}
         className="mySwiper"
       >
         {data &&
