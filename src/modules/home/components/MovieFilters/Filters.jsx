@@ -6,7 +6,7 @@ export default function Filters() {
   const stylesSelectCotainer =
     'relative w-full py-5 px-2 pr-2 after:absolute after:bottom-0 after:left-1/2 after:right-[50%] after:h-[2px] hover:after:left-0 hover:after:right-0 after:bg-mainBg-main after:transition-all after:duration-300';
   return (
-    <div className="relative z-[1]">
+    <div className="relative z-[11]">
       <div className="translate-y-[-50%] rounded-md bg-white hidden md:flex items-center justify-between shadow-[rgba(0,0,0,0.24)_0px_3px_8px]">
         <div className={stylesSelectCotainer}>
           <Select className="w-full" label="Phim">
