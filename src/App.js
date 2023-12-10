@@ -17,6 +17,9 @@ import './styles/tailwind.css';
 
 import MainLayout from './modules/layout/pages/MainLayout';
 import NotFound from './Components/NotFound/NotFound';
+import User from './modules/user/pages/User';
+import Login from './modules/user/components/Login';
+import SignUp from './modules/user/components/SignUp';
 
 // Thêm icon vào thư viện
 library.add(fas, far);
@@ -28,6 +31,10 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
+            <Route path="user" element={<User />}>
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<SignUp />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
