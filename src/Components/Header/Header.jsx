@@ -230,22 +230,32 @@ export default function Header() {
                         { hidden: !isOpenUserNav }
                       )}
                     >
-                      <button
-                        className="rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-500"
-                        onClick={() => {
-                          navigate('/user/login');
-                        }}
+                      <NavLink
+                        className={({ isActive, isPending }) =>
+                          cn(
+                            'rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-300',
+                            {
+                              'text-title-main bg-secondaryBg-main': isActive,
+                            }
+                          )
+                        }
+                        to="/user/login"
                       >
                         Đăng Nhập
-                      </button>
-                      <button
-                        className="rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-500"
-                        onClick={() => {
-                          navigate('/user/signup');
-                        }}
+                      </NavLink>
+                      <NavLink
+                        className={({ isActive, isPending }) =>
+                          cn(
+                            'rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-300',
+                            {
+                              'text-title-main bg-secondaryBg-main': isActive,
+                            }
+                          )
+                        }
+                        to="/user/signup"
                       >
                         Đăng Ký
-                      </button>
+                      </NavLink>
                     </div>
                   </div>
                 </>
@@ -275,7 +285,7 @@ export default function Header() {
                   // )}
                   className={({ isActive, isPending }) =>
                     cn(
-                      'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
+                      'text-center block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title-main transition-colors duration-300',
                       {
                         'text-title-main bg-secondaryBg-main': isActive,
                         'text-white': !isActive && !isPending,

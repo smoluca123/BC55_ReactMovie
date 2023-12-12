@@ -9,7 +9,7 @@ export default function User() {
   });
   return (
     <div
-      className="h-screen flex justify-center items-center"
+      className="sm:pt-[60px] h-screen flex justify-center items-center"
       style={{ backgroundImage: 'url("/assets/img/backapp.jpg")' }}
     >
       <Outlet />
