@@ -7,7 +7,7 @@ import {
   Alert,
   Spinner,
 } from '@material-tailwind/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { string, object } from 'yup';
@@ -33,6 +33,8 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -52,8 +54,9 @@ export default function SignUp() {
 
   const getCnValidation = (_error) =>
     cn('!border-t-blue-gray-200 focus:!border-t-gray-900', {
-      '!border-t-red-500 focus:!border-gray-900': _error,
-      '!border-t-green-500 focus:!border-gray-900': !_error,
+      '!border-t-red-500 focus:!border-t-red-500 focus:!border-red-500': _error,
+      '!border-t-green-500 focus:!border-t-green-500 focus:!border-green-500':
+        !_error,
     });
   const getSpanError = (error) =>
     error && <span className="text-red-600">{error.message}</span>;
@@ -67,8 +70,8 @@ export default function SignUp() {
       await signupAPI(values);
       setSuccess(true);
       setTimeout(() => {
-        console.log('Success');
-      }, 1000);
+        navigate('/user/login');
+      }, 1500);
     } catch (error) {
       setError(error);
     } finally {
