@@ -9,7 +9,7 @@ export default function User() {
   });
   return (
     <div
-      className="sm:pt-[60px] h-screen flex justify-center items-center"
+      className="sm:py-40 py-40 min-h-screen flex justify-center items-center"
       style={{ backgroundImage: 'url("/assets/img/backapp.jpg")' }}
     >
       <Outlet />
