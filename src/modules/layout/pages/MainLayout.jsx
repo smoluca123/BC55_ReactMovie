@@ -8,7 +8,7 @@ import Services from '../../../Components/Subscribe/Services';
 export default function MainLayout() {
   const loading = useSelector((state) => state.loading);
   return (
-    <>
+    <div className="wrapper bg-mainBg-main">
       {/* Show loading */}
       {loading.isLoading && <Loading />}
 
@@ -16,6 +16,6 @@ export default function MainLayout() {
       <Outlet />
       <Subscribe />
       <Services />
-    </>
+    </div>
   );
 }
