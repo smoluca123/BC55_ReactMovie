@@ -23,6 +23,7 @@ import Login from './modules/user/components/Login';
 import SignUp from './modules/user/components/SignUp';
 import PrivateRoute from './routers/PrivateRoute';
 import Profile from './modules/profile/pages/Profile';
+import Detail from './modules/details/pages/Detail';
 
 
 // Thêm icon vào thư viện
