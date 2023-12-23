@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -6,9 +7,10 @@ import {
   CardFooter,
   Typography,
   Button,
-} from '@material-tailwind/react';
+} from "@material-tailwind/react";
 export default function MovieItem({ movie }) {
   const { title, poster_path, overview } = movie;
+  const navigate = useNavigate();
   return (
     <div className="mb-[40px]">
       <Card className="group mt-6 w-full shadow-[0px_-2px_20px_0] shadow-blue-500/50 animate-neonGlow border-2 hover:border-title-main hover:shadow-title-main transition duration-300 overflow-hidden cursor-pointer">
@@ -19,7 +21,7 @@ export default function MovieItem({ movie }) {
           <img
             className="w-full h-full object-cover"
             src={
-              'https://image.tmdb.org/t/p/w600_and_h900_bestv2/' + poster_path
+              "https://image.tmdb.org/t/p/w600_and_h900_bestv2/" + poster_path
             }
             alt="card-image"
           />
@@ -41,7 +43,10 @@ export default function MovieItem({ movie }) {
           {/* <Button className="mb-2 transition duration-300 group-hover:text-title-main hover:!text-rose-500">
             Xem Thêm
           </Button> */}
-          <Button className="transition duration-300 group-hover:text-title-main hover:!text-rose-500">
+          <Button
+            className="transition duration-300 group-hover:text-title-main hover:!text-rose-500"
+            onClick={() => navigate(`/details/13546`)}
+          >
             Đặt Vé
           </Button>
         </CardFooter>
