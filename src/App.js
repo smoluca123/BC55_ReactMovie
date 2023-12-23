@@ -15,12 +15,15 @@ import Home from "./modules/home/pages/Home";
 //Import tailwind css
 import "./styles/tailwind.css";
 
-import MainLayout from "./modules/layout/pages/MainLayout";
-import NotFound from "./Components/NotFound/NotFound";
-import User from "./modules/user/pages/User";
-import Login from "./modules/user/components/Login";
-import SignUp from "./modules/user/components/SignUp";
-import Detail from "./modules/details/pages/Detail";
+
+import MainLayout from './modules/layout/pages/MainLayout';
+import NotFound from './Components/NotFound/NotFound';
+import User from './modules/user/pages/User';
+import Login from './modules/user/components/Login';
+import SignUp from './modules/user/components/SignUp';
+import PrivateRoute from './routers/PrivateRoute';
+import Profile from './modules/profile/pages/Profile';
+
 
 // Thêm icon vào thư viện
 library.add(fas, far);
@@ -37,6 +40,14 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
             </Route>
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

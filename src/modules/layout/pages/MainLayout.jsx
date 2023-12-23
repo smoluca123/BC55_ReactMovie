@@ -8,14 +8,16 @@ import Services from '../../../Components/Subscribe/Services';
 export default function MainLayout() {
   const loading = useSelector((state) => state.loading);
   return (
-    <div className="wrapper bg-mainBg-main">
+    <div className="wrapper bg-mainBg-main min-h-screen">
       {/* Show loading */}
       {loading.isLoading && <Loading />}
 
       <Header />
       <Outlet />
-      <Subscribe />
-      <Services />
+      <footer>
+        <Subscribe />
+        <Services />
+      </footer>
     </div>
   );
 }
