@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
+
+import { signOut } from '../../modules/user/slices/authSlice';
+import Swal from 'sweetalert2';
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
@@ -13,9 +19,31 @@ export default function Header() {
     { name: 'Tin Tức', href: '/tintuc', current: false },
     { name: 'Ứng Dụng', href: '/ungdung', current: false },
   ]);
+  const { currentUser } = useSelector((state) => state.auth);
   const isOverflow = isOpenNavMobile || isOpenUserNav;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    await dispatch(signOut());
+    Swal.fire({
+      icon: 'success',
+      title: 'Đăng xuất thành công',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+    // window.location.replace('/');
+  };
+
+  useEffect(() => {
+    // if (currentUser) {
+    //   setIsLogin(true);
+    // } else {
+    //   setIsLogin(false);
+    // }
+    setIsLogin(!!currentUser);
+  }, [currentUser]);
 
   return (
     <div className="fixed top-0 z-[998] w-full h-auto">
@@ -151,23 +179,36 @@ export default function Header() {
                   </button>
 
                   <div className="relative ml-3">
-                    <div>
+                    <div
+                      className="flex justify-center items-center cursor-pointer"
+                      onClick={() => setIsOpenUserNav(!isOpenUserNav)}
+                    >
                       <button
                         type="button"
                         className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                         id="user-menu-button"
                         aria-expanded="false"
                         aria-haspopup="true"
-                        onClick={() => setIsOpenUserNav(!isOpenUserNav)}
                       >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          alt
+                          // src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          // src={`https://ui-avatars.com/api/?name=${
+                          //   currentUser ? currentUser.hoTen : 'User'
+                          // }`}
+                          src={currentUser && currentUser.avatar}
                         />
                       </button>
+                      {currentUser && (
+                        <Typography
+                          className="pl-2 text-lightText-main hidden sm:block"
+                          variant="small"
+                        >
+                          {currentUser.hoTen}
+                        </Typography>
+                      )}
                     </div>
                     <div
                       className={cn(
@@ -181,16 +222,28 @@ export default function Header() {
                       aria-labelledby="user-menu-button"
                       tabIndex={-1}
                     >
+                      {currentUser && (
+                        <Typography
+                          className="pl-2 py-2 text-mainBg-main block text-center border-b-blue-gray-900 border-b-[1px] sm:hidden"
+                          variant="small"
+                        >
+                          {currentUser.hoTen}
+                        </Typography>
+                      )}
                       {/* Active: "bg-gray-100", Not Active: "" */}
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700"
+                      <NavLink
+                        to={'/profile'}
+                        className={({ isActive, isPending }) => {
+                          return cn('block px-4 py-2 text-sm text-gray-700', {
+                            'bg-mainBg-main text-title-main': isActive,
+                          });
+                        }}
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-0"
                       >
                         Your Profile
-                      </a>
+                      </NavLink>
                       <a
                         href="#"
                         className="block px-4 py-2 text-sm text-gray-700"
@@ -201,13 +254,12 @@ export default function Header() {
                         Settings
                       </a>
                       <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700"
+                        className="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-2"
                         onClick={() => {
-                          setIsLogin(false);
+                          handleLogout();
                         }}
                       >
                         Sign out
