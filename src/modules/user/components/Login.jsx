@@ -6,7 +6,7 @@ import {
   Typography,
   Alert,
 } from '@material-tailwind/react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { string, object } from 'yup';
@@ -24,6 +24,7 @@ const validationSchema = object({
 export default function Login() {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
   const { currentUser } = useSelector((state) => state.auth);
 
   const getCnValidation = (_error) =>
@@ -66,7 +67,7 @@ export default function Login() {
   };
 
   if (currentUser) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={searchParams.get('from') || '/'} replace />;
   }
   return (
     <Card className="p-8" color="white" shadow={true}>

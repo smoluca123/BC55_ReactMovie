@@ -31,16 +31,18 @@ export default function Header() {
       icon: 'success',
       title: 'Đăng xuất thành công',
       showConfirmButton: false,
-      timer: 1500,
+      timer: 1000,
     });
+    // window.location.replace('/');
   };
 
   useEffect(() => {
-    if (currentUser) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
+    // if (currentUser) {
+    //   setIsLogin(true);
+    // } else {
+    //   setIsLogin(false);
+    // }
+    setIsLogin(!!currentUser);
   }, [currentUser]);
 
   return (
@@ -193,9 +195,10 @@ export default function Header() {
                         <img
                           className="h-8 w-8 rounded-full"
                           // src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          src={`https://ui-avatars.com/api/?name=${
-                            currentUser ? currentUser.hoTen : 'User'
-                          }`}
+                          // src={`https://ui-avatars.com/api/?name=${
+                          //   currentUser ? currentUser.hoTen : 'User'
+                          // }`}
+                          src={currentUser && currentUser.avatar}
                         />
                       </button>
                       {currentUser && (
@@ -228,15 +231,19 @@ export default function Header() {
                         </Typography>
                       )}
                       {/* Active: "bg-gray-100", Not Active: "" */}
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700"
+                      <NavLink
+                        to={'/profile'}
+                        className={({ isActive, isPending }) => {
+                          return cn('block px-4 py-2 text-sm text-gray-700', {
+                            'bg-mainBg-main text-title-main': isActive,
+                          });
+                        }}
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-0"
                       >
                         Your Profile
-                      </a>
+                      </NavLink>
                       <a
                         href="#"
                         className="block px-4 py-2 text-sm text-gray-700"
@@ -247,7 +254,7 @@ export default function Header() {
                         Settings
                       </a>
                       <a
-                        className="block px-4 py-2 text-sm text-gray-700"
+                        className="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
                         role="menuitem"
                         tabIndex={-1}
                         id="user-menu-item-2"

@@ -4,8 +4,12 @@ import { signinAPI } from '../../../apis/userAPI';
 export const signin = createAsyncThunk('auth/signin', async (values) => {
   try {
     const data = await signinAPI(values);
-    localStorage.setItem('user', JSON.stringify(data));
-    return data;
+    const newData = {
+      ...data,
+      avatar: `https://ui-avatars.com/api/?name=${data.hoTen}`,
+    };
+    localStorage.setItem('user', JSON.stringify(newData));
+    return newData;
   } catch (error) {
     throw error;
   }

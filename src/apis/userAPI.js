@@ -17,7 +17,9 @@ const signinAPI = async (credentials) => {
     );
     return data.content;
   } catch (error) {
-    if (error.response) throw error.response.data?.content;
+    if (error.response) {
+      throw error.response.data?.content;
+    }
     throw error.message;
   }
 };
