@@ -22,29 +22,30 @@ export default function MovieScreening({ danhSachPhim }) {
                 alt={tenPhim}
               />
             </div>
-            <div className="px-4">
-              <Typography className="text-white font-medium">
+            <div className="px-4 text-white w-full">
+              <div className="flex lg:flex-row lg:justify-start md:justify-center md:items-center md:text-center md:flex-col">
                 {hot ? (
-                  <span className="px-2 py-1 mr-2 rounded-lg bg-red-700 ">
+                  <span className="px-2 py-1 lg:mr-2 rounded-lg bg-red-700 ">
                     HOT
                   </span>
                 ) : (
-                  <span className="px-2 py-1 mr-2 rounded-lg bg-deep-purple-300 ">
+                  <span className="px-2 py-1 lg:mr-2 rounded-lg bg-deep-purple-300 ">
                     -{Math.floor(Math.random() * 20)}%
                   </span>
                 )}
-
-                {tenPhim}
+                <Typography className="text-white font-bold">
+                  {tenPhim}
+                </Typography>
                 <span
-                  className={classNames('px-2 py-1 ml-2 rounded-lg', {
+                  className={classNames('px-2 py-1 lg:ml-2 rounded-lg', {
                     'bg-rose-500': sapChieu,
                     '!bg-success': dangChieu,
                   })}
                 >
                   {dangChieu ? 'Đang chiếu' : 'Sắp Chiếu'}
                 </span>
-              </Typography>
-              <div className="grid grid-cols-4 gap-4 max-h-[120px] w-full overflow-y-auto my-2 pr-2">
+              </div>
+              <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 max-h-[120px] w-full overflow-y-auto my-2 pr-2">
                 {lstLichChieuTheoPhim.map(
                   ({ maLichChieu, ngayChieuGioChieu }) => (
                     <Button

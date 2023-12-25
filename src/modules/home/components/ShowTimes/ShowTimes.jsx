@@ -13,12 +13,15 @@ import { getCinemasAPI, getShowTimesAPI } from '../../../../apis/cinemaAPI';
 
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../../../../redux/slices/loadingSlice';
+import useWindowSize from '../../../../hooks/useWindowSize';
 export default function ShowTimes() {
   const [showTimesData, setShowTimesData] = useState([]);
   const [cinemas, setCinemas] = useState([]);
   const [activeTab, setActiveTab] = useState(null);
 
   const dispatch = useDispatch();
+
+  const { width, height } = useWindowSize();
 
   useEffect(() => {
     const getCinemas = async () => {
@@ -52,12 +55,15 @@ export default function ShowTimes() {
       <Typography variant="h1" className="text-center text-title-main mb-4">
         Các suất chiếu
       </Typography>
-      <Tabs value={activeTab || 'BHDStar'} orientation="vertical">
+      <Tabs
+        value={activeTab || 'BHDStar'}
+        orientation={width >= 960 ? 'vertical' : ''}
+      >
         <TabsHeader
-          className="max-h-[700px] min-h-[700px] overflow-y-auto flex flex-col rounded-none border-r border-white bg-transparent p-0"
+          className="lg:max-h-[700px] lg:min-h-[700px] lg:overflow-y-auto overflow-x-auto lg:flex lg:flex-col flex-row rounded-none lg:border-r border-b border-white bg-transparent p-0"
           indicatorProps={{
             className:
-              'bg-transparent border-r-[3px] border-title-main shadow-none rounded-none',
+              'bg-transparent lg:border-r-[3px] lg:border-b-0 border-b-[3px] border-title-main shadow-none rounded-none',
           }}
         >
           {cinemas.map(({ logo, maHeThongRap }) => (
