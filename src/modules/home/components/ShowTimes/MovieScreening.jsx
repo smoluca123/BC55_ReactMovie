@@ -23,7 +23,7 @@ export default function MovieScreening({ danhSachPhim }) {
               />
             </div>
             <div className="px-4 text-white w-full">
-              <div className="flex lg:flex-row lg:justify-start md:justify-center md:items-center md:text-center md:flex-col">
+              <div className="flex lg:flex-row lg:justify-start md:justify-center items-center text-center flex-col">
                 {hot ? (
                   <span className="px-2 py-1 lg:mr-2 rounded-lg bg-red-700 ">
                     HOT
