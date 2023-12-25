@@ -5,6 +5,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import { Link as LinkScroll, animateScroll as scroll } from 'react-scroll';
 
 import { signOut } from '../../modules/user/slices/authSlice';
 import Swal from 'sweetalert2';
@@ -15,7 +16,7 @@ export default function Header() {
   const [isOpenUserNav, setIsOpenUserNav] = useState(false);
   const [navItem, setNavItem] = useState([
     { name: 'Lịch Chiếu', href: '/', current: false },
-    { name: 'Cụm Rạp', href: '/cumrap', current: false },
+    { name: 'Cụm Rạp', href: '#showtimes', current: false },
     { name: 'Tin Tức', href: '/tintuc', current: false },
     { name: 'Ứng Dụng', href: '/ungdung', current: false },
   ]);
@@ -127,29 +128,34 @@ export default function Header() {
                 <div className="flex space-x-4">
                   {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                   {navItem &&
-                    navItem.map((item, index) => (
-                      <NavLink
-                        key={index}
-                        to={item.href}
-                        // className={cn(
-                        //   'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
-                        //   item.current
-                        //     ? 'text-title-main bg-secondaryBg-main'
-                        //     : 'text-white'
-                        // )}
-                        className={({ isActive, isPending }) =>
-                          cn(
-                            'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
-                            {
-                              'text-title-main bg-secondaryBg-main': isActive,
-                              'text-white': !isActive && !isPending,
-                            }
-                          )
-                        }
-                      >
-                        {item.name}
-                      </NavLink>
-                    ))}
+                    navItem.map((item, index) => {
+                      const result = item.href.includes('#') ? (
+                        <LinkScroll
+                          className="rounded-md px-3 py-2 text-sm font-medium text-white hover:text-title-main transition-colors duration-300 cursor-pointer"
+                          to={item.href.replace('#', '')}
+                          smooth={true}
+                        >
+                          {item.name}
+                        </LinkScroll>
+                      ) : (
+                        <NavLink
+                          key={index}
+                          to={item.href}
+                          className={({ isActive, isPending }) =>
+                            cn(
+                              'rounded-md px-3 py-2 text-sm font-medium hover:text-title-main transition-colors duration-300',
+                              {
+                                'text-title-main bg-secondaryBg-main': isActive,
+                                'text-white': !isActive && !isPending,
+                              }
+                            )
+                          }
+                        >
+                          {item.name}
+                        </NavLink>
+                      );
+                      return result;
+                    })}
                 </div>
               </div>
             </div>
