@@ -1,4 +1,18 @@
+
 import baseAPI from './baseAPI';
+
+const getMovieDetailsAPI = async (movieId) =>  {
+  try {
+    const resp = await baseAPI.get("quanlyrap/laythongtinlichchieuphim", {
+      params: {
+        maPhim: movieId,
+      },
+    });
+    return resp.data.content;
+  } catch (error) {
+    throw error.response?.data?.content;
+  }
+}
 
 const getCinemasAPI = async () => {
   try {
@@ -20,4 +34,4 @@ const getShowTimesAPI = async () => {
   }
 };
 
-export { getCinemasAPI, getShowTimesAPI };
+export { getCinemasAPI, getShowTimesAPI, getMovieDetailsAPI };
