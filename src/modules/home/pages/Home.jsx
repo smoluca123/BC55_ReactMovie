@@ -4,6 +4,7 @@ import usePreloader from '../../../hooks/usePreloader';
 import { Carousels } from '../components/Carousel/';
 import { Filters } from '../components/MovieFilters';
 import MovieList from '../components/Movies/MovieList';
+import { ShowTimes } from '../components/ShowTimes';
 export default function Home() {
   const { preLoader } = usePreloader();
   useEffect(() => {
@@ -20,6 +21,7 @@ export default function Home() {
           <div className="_sm:container">
             <Filters />
             <MovieList />
+            <ShowTimes />
           </div>
         </div>
       </div>
