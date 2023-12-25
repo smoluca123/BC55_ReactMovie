@@ -24,7 +24,7 @@ export default function MovieScreening({ danhSachPhim }) {
             </div>
             <div className="px-4 text-white w-full">
               <div className="flex lg:flex-row lg:justify-start md:justify-center items-center text-center flex-col">
-                {hot ? (
+                {/* {hot ? (
                   <span className="px-2 py-1 lg:mr-2 rounded-lg bg-red-700 ">
                     HOT
                   </span>
@@ -32,7 +32,15 @@ export default function MovieScreening({ danhSachPhim }) {
                   <span className="px-2 py-1 lg:mr-2 rounded-lg bg-deep-purple-300 ">
                     -{Math.floor(Math.random() * 20)}%
                   </span>
-                )}
+                )} */}
+                <span
+                  className={classNames('px-2 py-1 lg:mr-2 rounded-lg', {
+                    'bg-red-700': hot,
+                    'bg-deep-purple-300': !hot,
+                  })}
+                >
+                  {hot ? 'HOT' : `-${Math.floor(Math.random() * 20)}%`}
+                </span>
                 <Typography className="text-white font-bold">
                   {tenPhim}
                 </Typography>

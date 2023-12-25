@@ -60,7 +60,7 @@ export default function ShowTimes() {
         orientation={width >= 960 ? 'vertical' : ''}
       >
         <TabsHeader
-          className="lg:max-h-[700px] lg:min-h-[700px] lg:overflow-y-auto overflow-x-auto lg:flex lg:flex-col flex-row rounded-none lg:border-r border-b border-white bg-transparent p-0"
+          className="lg:max-h-[700px] lg:min-h-[700px] lg:overflow-y-auto overflow-x-auto lg:flex lg:flex-col flex-row rounded-none lg:border-r lg:border-b-0 border-b border-white bg-transparent p-0"
           indicatorProps={{
             className:
               'bg-transparent lg:border-r-[3px] lg:border-b-0 border-b-[3px] border-title-main shadow-none rounded-none',
