@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import OverView from "../components/OverView/OverView";
-import ShowTimes from "../components/Showtimes/ShowTimes";
-import { getMovieDetailsAPI } from "../../../apis/cinemaAPI";
+import OverView from '../components/OverView/OverView';
+import ShowTimes from '../components/Showtimes/ShowTimes';
+import { getMovieDetailsAPI } from '../../../apis/cinemaAPI';
 
 export default function Detail() {
   // const params = useParams();
@@ -30,7 +30,7 @@ export default function Detail() {
   // }
 
   return (
-    <div className="text-white">
+    <div className='text-white container'>
       <OverView />
       <ShowTimes />
     </div>
