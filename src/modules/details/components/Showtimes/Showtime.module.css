@@ -4,7 +4,6 @@
 }
 
 .cinemaSystemContainer.active {
-  transform: translateY(-100%);
 }
 
 .cinemaLogo {
@@ -30,13 +29,13 @@
 }
 
 .cinemaDetails h3 {
-  color: #108f3e;
+  color: white;
   margin-bottom: 10px;
   font-weight: 700;
 }
 
 .cinemaDetails button {
-  background-color: #fff;
+  background-color: rgb(17 24 39);
   color: #32ffab;
   padding: 8px 16px;
   border: none;
@@ -47,4 +46,59 @@
 
 .cinemaDetails button:hover {
   background-color: beige;
+}
+
+/* iPad Pro */
+@media screen and (max-width: 1024px) {
+  .cinemaDetails {
+    transform: translateX(-190%);
+  }
+}
+
+/* iPad Air */
+@media screen and (max-width: 1024px) {
+  .cinemaDetails {
+    transform: translateX(-190%);
+  }
+}
+
+@media screen and (max-width: 956px) {
+  .cinemaDetails {
+    transform: translateX(-130%);
+  }
+}
+
+/* Surface Pro 7 */
+@media screen and (max-width: 912px) {
+  .cinemaDetails {
+    transform: translateX(-130%);
+  }
+}
+
+/* Surface Dou */
+@media screen and (max-width: 540px) {
+  .cinemaDetails {
+    transform: translateX(-100%);
+    font-size: 15px;
+  }
+}
+
+/* IPhone 14 Pro max */
+@media screen and (max-width: 430px) {
+  .cinemaDetails {
+    transform: translateX(-70%);
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .cinemaDetails {
+    font-size: 12px;
+  }
+}
+
+/* Galaxy Fold */
+@media screen and (max-width: 280px) {
+  .cinemaDetails {
+    font-size: 6px;
+  }
 }
