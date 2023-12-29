@@ -57,7 +57,7 @@ export default function ShowTimes() {
       </Typography>
       <Tabs
         value={activeTab || 'BHDStar'}
-        orientation={width >= 960 ? 'vertical' : ''}
+        orientation={width >= 960 ? 'vertical' : 'horizontal'}
       >
         <TabsHeader
           className="lg:max-h-[700px] lg:min-h-[700px] lg:overflow-y-auto overflow-x-auto lg:flex lg:flex-col flex-row rounded-none lg:border-r lg:border-b-0 border-b border-white bg-transparent p-0"

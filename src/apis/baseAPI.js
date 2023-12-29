@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseAPI = axios.create({
   baseURL: 'https://movienew.cybersoft.edu.vn/api/',
   params: {
-    maNhom: 'GP07',
+    maNhom: 'GP03',
   },
   headers: {
     TokenCybersoft:

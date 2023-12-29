@@ -21,7 +21,7 @@ export default function CarouselItem({ item }) {
     setPathImg(pathConfig.current.banner);
   }, [width]);
   return (
-    <div className="w-full relative sm:h-auto h-[100vh]">
+    <div className="w-full relative sm:h-auto h-dvh">
       <div className="poster">
         <img
           className="h-[100vh] _sm:h-auto object-cover"
