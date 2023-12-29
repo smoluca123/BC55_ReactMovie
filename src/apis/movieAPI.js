@@ -9,4 +9,13 @@ const getBannerMovies = async () => {
   }
 };
 
-export { getBannerMovies };
+const getListMoviesAPI = async () => {
+  try {
+    const { data } = await baseAPI.get('/QuanLyPhim/LayDanhSachPhim');
+    return data.content;
+  } catch (error) {
+    throw error.response?.data?.content;
+  }
+};
+
+export { getBannerMovies, getListMoviesAPI };

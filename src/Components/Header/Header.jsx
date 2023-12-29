@@ -133,6 +133,7 @@ export default function Header() {
                         <LinkScroll
                           className="rounded-md px-3 py-2 text-sm font-medium text-white hover:text-title-main transition-colors duration-300 cursor-pointer"
                           to={item.href.replace('#', '')}
+                          key={index}
                           smooth={true}
                         >
                           {item.name}

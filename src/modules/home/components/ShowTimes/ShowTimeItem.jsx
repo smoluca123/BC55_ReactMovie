@@ -51,7 +51,10 @@ export default function ShowTimeItem({ dataCumRap }) {
   ];
 
   return (
-    <Tabs value={activeTab} orientation={width >= 960 ? 'vertical' : ''}>
+    <Tabs
+      value={activeTab}
+      orientation={width >= 960 ? 'vertical' : 'horizontal'}
+    >
       <TabsHeader
         className="min-w-[250px] lg:w-[250px] w-full max-h-[200px] lg:max-h-[700px] lg:min-h-[700px] overflow-y-auto p-0 flex flex-col rounded-none border-r-2 border-blue-gray-50 bg-transparent"
         indicatorProps={{
@@ -75,7 +78,7 @@ export default function ShowTimeItem({ dataCumRap }) {
             >
               <Typography
                 className="text-left my-2 px-2 text-ellipsis !line-clamp-1 whitespace-pre-line"
-                variant="medium"
+                variant="small"
               >
                 {tenCumRap}
               </Typography>
