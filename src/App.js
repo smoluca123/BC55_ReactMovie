@@ -40,7 +40,14 @@ function App() {
             <Route path="user" element={<User />}>
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
-              <Route path="history" element={<HistoryBooking />} />
+              <Route
+                path="history"
+                element={
+                  <PrivateRoute>
+                    <HistoryBooking />
+                  </PrivateRoute>
+                }
+              />
             </Route>
             <Route
               path="/profile"

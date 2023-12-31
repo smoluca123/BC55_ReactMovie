@@ -267,7 +267,7 @@ export default function Header() {
                       <NavLink
                         className={({ isActive, isPending }) =>
                           cn(
-                            'rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-300',
+                            'rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-300 block',
                             {
                               'text-title-main bg-secondaryBg-main': isActive,
                             }
@@ -280,7 +280,7 @@ export default function Header() {
                       <NavLink
                         className={({ isActive, isPending }) =>
                           cn(
-                            'rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-300',
+                            'rounded-md px-3 py-2 text-sm font-medium text-lightText-main hover:text-white transition duration-300 block',
                             {
                               'text-title-main bg-secondaryBg-main': isActive,
                             }
