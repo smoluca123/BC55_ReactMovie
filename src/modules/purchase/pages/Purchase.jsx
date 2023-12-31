@@ -31,15 +31,15 @@ export default function Purchase() {
   }, []);
 
   return (
-    <div className=" container pt-[60px]">
+    <div className="container pt-[60px]">
       <Typography variant="h1" className="text-center text-title-main">
         Đặt Vé
       </Typography>
-      <div className="flex items-center mt-10">
-        <div className="max-w-[70%]">
+      <div className="flex flex-col xl:flex-row items-center mt-10">
+        <div className="w-auto xl:w-[70%] xl:max-w-[70%]">
           {dataSeat && <SeatList seats={dataSeat.danhSachGhe} />}
         </div>
-        <div className="w-full">
+        <div className="w-auto xl:w-[30%] pt-10 sm:ml-6 sm:mt-0">
           {dataSeat && (
             <SelectedSeat
               maLichChieu={maLichChieu}

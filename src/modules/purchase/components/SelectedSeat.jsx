@@ -38,7 +38,7 @@ export default function SelectedSeat({ thongTinPhim, maLichChieu }) {
         timer: 1000,
       });
       setTimeout(() => {
-        navigate('/');
+        navigate('/user/history');
       }, 1000);
       dispatch(resetSelectedTicket());
     } catch (error) {
@@ -48,7 +48,7 @@ export default function SelectedSeat({ thongTinPhim, maLichChieu }) {
 
   return (
     <div className="flex justify-center w-full">
-      <Card className="ml-6 w-full text-center">
+      <Card className="ml-0 sm:ml-6 w-full text-center">
         <CardHeader shadow={false} floated={false}>
           <Typography
             variant="h1"

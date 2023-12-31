@@ -9,6 +9,7 @@ import { Link as LinkScroll, animateScroll as scroll } from 'react-scroll';
 
 import { signOut } from '../../modules/user/slices/authSlice';
 import Swal from 'sweetalert2';
+import CustomNavLink from './CustomUI/CustomNavLink';
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
@@ -38,11 +39,6 @@ export default function Header() {
   };
 
   useEffect(() => {
-    // if (currentUser) {
-    //   setIsLogin(true);
-    // } else {
-    //   setIsLogin(false);
-    // }
     setIsLogin(!!currentUser);
   }, [currentUser]);
 
@@ -63,11 +59,7 @@ export default function Header() {
               >
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open main menu</span>
-                {/*
-      Icon when menu is closed.
 
-      Menu open: "hidden", Menu closed: "block"
-    */}
                 <svg
                   className={cn(
                     !isOpenNavMobile ? 'block' : 'hidden',
@@ -85,11 +77,7 @@ export default function Header() {
                     d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                   />
                 </svg>
-                {/*
-      Icon when menu is open.
 
-      Menu open: "block", Menu closed: "hidden"
-    */}
                 <svg
                   className={cn(
                     isOpenNavMobile ? 'block' : 'hidden',
@@ -201,10 +189,6 @@ export default function Header() {
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          // src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          // src={`https://ui-avatars.com/api/?name=${
-                          //   currentUser ? currentUser.hoTen : 'User'
-                          // }`}
                           src={currentUser && currentUser.avatar}
                         />
                       </button>
@@ -237,29 +221,20 @@ export default function Header() {
                           {currentUser.hoTen}
                         </Typography>
                       )}
-                      {/* Active: "bg-gray-100", Not Active: "" */}
-                      <NavLink
-                        to={'/profile'}
-                        className={({ isActive, isPending }) => {
-                          return cn('block px-4 py-2 text-sm text-gray-700', {
-                            'bg-mainBg-main text-title-main': isActive,
-                          });
-                        }}
-                        role="menuitem"
-                        tabIndex={-1}
-                        id="user-menu-item-0"
+
+                      <CustomNavLink
+                        to="/profile"
+                        _className="block px-4 py-2 text-sm text-gray-700"
                       >
                         Your Profile
-                      </NavLink>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700"
-                        role="menuitem"
-                        tabIndex={-1}
-                        id="user-menu-item-1"
+                      </CustomNavLink>
+
+                      <CustomNavLink
+                        to="user/history"
+                        _className="block px-4 py-2 text-sm text-gray-700"
                       >
-                        Settings
-                      </a>
+                        Lịch sử đặt vé
+                      </CustomNavLink>
                       <a
                         className="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
                         role="menuitem"

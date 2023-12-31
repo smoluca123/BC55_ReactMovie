@@ -24,4 +24,14 @@ const signinAPI = async (credentials) => {
   }
 };
 
-export { signupAPI, signinAPI };
+const getInfoUserAPI = async () => {
+  try {
+    const { data } = await baseAPI.post('/QuanLyNguoiDung/ThongTinTaiKhoan');
+    return data.content;
+  } catch (error) {
+    if (error.response) throw error.response.data?.content;
+    throw error.message;
+  }
+};
+
+export { signupAPI, signinAPI, getInfoUserAPI };

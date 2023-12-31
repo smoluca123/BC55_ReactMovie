@@ -15,7 +15,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { signin } from '../slices/authSlice';
 import Swal from 'sweetalert2';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import usePreloader from '../../../hooks/usePreloader';
 
 const validationSchema = object({
   taiKhoan: string().required('Tài khoản không được trống'),
@@ -23,6 +24,7 @@ const validationSchema = object({
 });
 export default function Login() {
   const [error, setError] = useState(null);
+  const { preLoader } = usePreloader();
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const { currentUser } = useSelector((state) => state.auth);
@@ -65,6 +67,10 @@ export default function Login() {
       // console.log(error);
     }
   };
+
+  useEffect(() => {
+    preLoader(500);
+  }, []);
 
   if (currentUser) {
     return <Navigate to={searchParams.get('from') || '/'} replace />;

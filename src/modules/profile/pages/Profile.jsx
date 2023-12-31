@@ -1,7 +1,8 @@
 import { Button, Input, Typography } from '@material-tailwind/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import usePreloader from '../../../hooks/usePreloader';
 
 export default function Profile() {
   const { currentUser } = useSelector((state) => state.auth);
@@ -11,6 +12,10 @@ export default function Profile() {
     defaultValues: { ...currentUser },
     mode: 'onTouched',
   });
+  const { preLoader } = usePreloader();
+  useEffect(() => {
+    preLoader(500);
+  }, []);
 
   return (
     <div className="flex justify-center items-center min-h-screen ">
