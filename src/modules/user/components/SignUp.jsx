@@ -14,8 +14,10 @@ import { string, object } from 'yup';
 import cn from 'classnames';
 
 import { signupAPI } from '../../../apis/userAPI';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import usePreloader from '../../../hooks/usePreloader';
 
 const validationSchema = object({
   hoTen: string().required('Họ tên không được để trống'),
@@ -33,6 +35,7 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const { preLoader } = usePreloader();
   const navigate = useNavigate();
 
   const {
@@ -81,6 +84,10 @@ export default function SignUp() {
   const handleError = (errors) => {
     console.log(errors);
   };
+
+  useEffect(() => {
+    preLoader(500);
+  }, []);
 
   return (
     <Card className="p-8" color="white" shadow={true}>

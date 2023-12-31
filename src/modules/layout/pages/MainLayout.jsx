@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Subscribe } from '../../../Components/Subscribe';
 import Services from '../../../Components/Subscribe/Services';
+import ScrollTop from '../../../Components/ScrollToTop/';
 export default function MainLayout() {
   const loading = useSelector((state) => state.loading);
   return (
@@ -17,6 +18,7 @@ export default function MainLayout() {
       <footer>
         <Subscribe />
         <Services />
+        <ScrollTop />
       </footer>
     </div>
   );

@@ -24,6 +24,7 @@ import PrivateRoute from './routers/PrivateRoute';
 import Profile from './modules/profile/pages/Profile';
 import Detail from './modules/details/pages/Detail';
 import Purchase from './modules/purchase/pages/Purchase';
+import HistoryBooking from './modules/history/pages/HistoryBooking';
 
 // Thêm icon vào thư viện
 library.add(fas, far);
@@ -39,6 +40,7 @@ function App() {
             <Route path="user" element={<User />}>
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
+              <Route path="history" element={<HistoryBooking />} />
             </Route>
             <Route
               path="/profile"
@@ -48,6 +50,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+
             <Route
               path="/purchase/:maLichChieu"
               element={

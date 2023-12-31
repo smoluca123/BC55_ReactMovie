@@ -5,7 +5,7 @@ import usePreLoader from '../../../hooks/usePreloader';
 export default function User() {
   const { preLoader } = usePreLoader();
   useEffect(() => {
-    preLoader(500);
+    // preLoader(500);
   });
   return (
     <div
