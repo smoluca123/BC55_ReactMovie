@@ -32,7 +32,7 @@ export default function HistoryBooking() {
 
   return (
     <div className="container">
-      <Card className="w-3/4 mx-auto">
+      <Card className="w-full sm:w-3/4 mx-auto">
         <CardHeader
           className="bg-mainBg-main shadow-title-main group hover:shadow-gray-600 transition duration-300"
           floated={false}
