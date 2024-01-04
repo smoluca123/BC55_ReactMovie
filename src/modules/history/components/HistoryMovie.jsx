@@ -31,6 +31,7 @@ export default function HistoryMovie({ listTicket }) {
               giaVe={listTicket.giaVe}
               thoiLuong={timeMovie}
               ticketItem={ticketItem}
+              key={ticketItem.maGhe}
             />
           ))}
         </div>

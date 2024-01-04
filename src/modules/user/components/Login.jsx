@@ -147,7 +147,12 @@ export default function Login() {
         </Button>
         <Typography color="gray" className="mt-4 text-center font-normal">
           Bạn chưa có tài khoản?{' '}
-          <Link to={'/user/signup'} className="font-medium text-gray-900">
+          <Link
+            to={
+              '/user/signup?from=' + searchParams.get('from') || '/user/signup'
+            }
+            className="font-medium text-gray-900"
+          >
             Đăng ký
           </Link>
         </Typography>

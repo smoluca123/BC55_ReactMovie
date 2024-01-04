@@ -45,10 +45,17 @@ export default function HistoryBooking() {
           </Typography>
         </CardHeader>
         <CardBody>
-          {userInfo &&
-            userInfo.thongTinDatVe.map((historyItem) => {
-              return <HistoryMovie listTicket={historyItem} />;
-            })}
+          <div className="">
+            {userInfo &&
+              userInfo.thongTinDatVe.map((historyItem) => {
+                return (
+                  <HistoryMovie
+                    key={historyItem.maVe}
+                    listTicket={historyItem}
+                  />
+                );
+              })}
+          </div>
         </CardBody>
       </Card>
     </div>
