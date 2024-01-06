@@ -1,6 +1,6 @@
 import { Typography } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import SeatList from '../components/SeatList';
 import { getListTicketAPI } from '../../../apis/ticketAPI';
 import SelectedSeat from '../components/SelectedSeat';
@@ -12,6 +12,7 @@ export default function Purchase() {
   const [dataSeat, setDataSeat] = useState(null);
   const dispatch = useDispatch();
   const { maLichChieu } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getListSeat = async () => {
@@ -21,6 +22,8 @@ export default function Purchase() {
         setDataSeat(content);
         dispatch(setLoading(false));
       } catch (error) {
+        dispatch(setLoading(false));
+        navigate('/');
         console.log(error);
       }
     };

@@ -7,12 +7,11 @@ import {
   Button,
 } from '@material-tailwind/react';
 import { useEffect, useState } from 'react';
-import ShowtimesDetailItem from './ShowtimesDetailItem';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
 export function ShowtimesDetail({ data }) {
-  const [activeTab, setActiveTab] = useState(data[0].maHeThongRap);
+  const [activeTab, setActiveTab] = useState(data[0]?.maHeThongRap);
 
   return (
     <>
@@ -40,29 +39,28 @@ export function ShowtimesDetail({ data }) {
             {data.map(({ maHeThongRap, cumRapChieu }) => (
               <TabPanel key={maHeThongRap} value={maHeThongRap}>
                 <div className="flex gap-4">
-                  {cumRapChieu.map((showtimes) => {
-                    return (
-                      <div key={Math.random()}>
-                        {showtimes.lichChieuPhim.map(
-                          ({ ngayChieuGioChieu, maLichChieu }) => (
-                            <Button className="hover:shadow-md hover:shadow-light-blue-300 mb-2">
-                              <Link to={`/purchase/${maLichChieu}`}>
-                                <span className="text-title-main">
-                                  {dayjs(ngayChieuGioChieu).format(
-                                    'DD/MM/YYYY'
-                                  )}
-                                </span>{' '}
-                                -{' '}
-                                <span className="text-red-400">
-                                  {dayjs(ngayChieuGioChieu).format('hh:mm')}
-                                </span>
-                              </Link>
-                            </Button>
-                          )
-                        )}
-                      </div>
-                    );
-                  })}
+                  {cumRapChieu.map((showtimes) => (
+                    <div key={Math.random()}>
+                      {showtimes.lichChieuPhim.map(
+                        ({ ngayChieuGioChieu, maLichChieu }) => (
+                          <Button
+                            key={maLichChieu}
+                            className="hover:shadow-md hover:shadow-light-blue-300 mb-2"
+                          >
+                            <Link to={`/purchase/${maLichChieu}`}>
+                              <span className="text-title-main">
+                                {dayjs(ngayChieuGioChieu).format('DD/MM/YYYY')}
+                              </span>{' '}
+                              -{' '}
+                              <span className="text-red-400">
+                                {dayjs(ngayChieuGioChieu).format('hh:mm')}
+                              </span>
+                            </Link>
+                          </Button>
+                        )
+                      )}
+                    </div>
+                  ))}
                 </div>
               </TabPanel>
             ))}

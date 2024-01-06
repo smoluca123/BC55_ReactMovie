@@ -50,7 +50,7 @@ export default function Detail() {
       {movie && (
         <>
           <div className="container pt-10">
-            <div className="flex gap-8 items-center">
+            <div className="flex flex-col md:flex-row gap-8 items-center ">
               <div className="relative group min-w-[200px]">
                 <img
                   className="w-full h-[320px] "
@@ -63,7 +63,7 @@ export default function Detail() {
                   </Button>
                 </div>
               </div>
-              <div className="">
+              <div className="md:text-left text-center px-2 md:px-0">
                 <Typography variant="h4" className="text-lightText-main mb-2">
                   {movie.tenPhim}
                 </Typography>
@@ -98,7 +98,7 @@ export default function Detail() {
                   {movie.moTa}
                 </Typography>
               </div>
-              <div className="ml-auto">
+              <div className="md:ml-auto">
                 <div className="w-24 h-24 border-[10px] border-lime-500 rounded-full bg-gray-900 text-white text-xl font-bold flex items-center justify-center">
                   {movie.danhGia}
                 </div>
