@@ -5,9 +5,8 @@ import {
   Button,
   Typography,
   Alert,
-  Spinner,
 } from '@material-tailwind/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { string, object } from 'yup';
@@ -18,6 +17,8 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import usePreloader from '../../../hooks/usePreloader';
+import { useDispatch, useSelector } from 'react-redux';
+import { signin } from '../slices/authSlice';
 
 const validationSchema = object({
   hoTen: string().required('Họ tên không được để trống'),
@@ -34,7 +35,10 @@ export default function SignUp() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [searchParams] = useSearchParams();
+  const { currentUser } = useSelector((state) => state.auth);
 
+  const dispatch = useDispatch();
   const { preLoader } = usePreloader();
   const navigate = useNavigate();
 
@@ -70,10 +74,14 @@ export default function SignUp() {
       setLoading(true);
       setError(null);
 
-      await signupAPI(values);
+      const content = await signupAPI(values);
+      await dispatch(
+        signin({ taiKhoan: content.taiKhoan, matKhau: content.matKhau })
+      ).unwrap();
       setSuccess(true);
       setTimeout(() => {
-        navigate('/user/login');
+        const url = searchParams.get('from') || '/user/login';
+        navigate(url);
       }, 1500);
     } catch (error) {
       setError(error);
@@ -88,6 +96,11 @@ export default function SignUp() {
   useEffect(() => {
     preLoader(500);
   }, []);
+
+  if (currentUser) {
+    const url = searchParams.get('from') || '/';
+    return <Navigate to={url} replace />;
+  }
 
   return (
     <Card className="p-8" color="white" shadow={true}>

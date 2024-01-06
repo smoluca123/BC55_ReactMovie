@@ -8,13 +8,6 @@ import { setSelectedTicket } from '../slices/ticketSlice';
 import SeatItem from './SeatItem';
 const limitItem = 16;
 export default function SeatList({ seats }) {
-  console.log(
-    Array.from({ length: Math.ceil(seats.length / limitItem) }, (_, index) => {
-      const start = index * limitItem;
-      const end = start + limitItem;
-      return seats.slice(start, end);
-    })
-  );
   const newSeats = Array.from(
     { length: Math.ceil(seats.length / limitItem) },
     (_, index) => {
@@ -56,8 +49,9 @@ export default function SeatList({ seats }) {
     // </div>
     <div className="w-full">
       {newSeats.map(
-        (list) => (
+        (list, index) => (
           <SeatItem
+            key={index}
             data={list}
             selectedSeats={selectedSeats}
             onSelect={handleSelectSeat}

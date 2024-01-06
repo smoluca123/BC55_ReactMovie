@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardHeader,
@@ -7,9 +7,9 @@ import {
   CardFooter,
   Typography,
   Button,
-} from "@material-tailwind/react";
+} from '@material-tailwind/react';
 export default function MovieItem({ movie }) {
-  const { title, poster_path, overview } = movie;
+  const { tenPhim, hinhAnh, moTa, biDanh, maPhim } = movie;
   const navigate = useNavigate();
   return (
     <div className="mb-[40px]">
@@ -19,10 +19,8 @@ export default function MovieItem({ movie }) {
           className="relative mt-0 mx-0 rounded-br-none rounded-bl-none h-auto max-h-[400px]"
         >
           <img
-            className="w-full h-full object-cover"
-            src={
-              "https://image.tmdb.org/t/p/w600_and_h900_bestv2/" + poster_path
-            }
+            className="w-full min-h-[400px] h-full object-cover"
+            src={hinhAnh}
             alt="card-image"
           />
         </CardHeader>
@@ -31,12 +29,12 @@ export default function MovieItem({ movie }) {
             variant="h5"
             color="blue-gray"
             className="mb-2 flex items-center justify-center truncate whitespace-pre-line overflow-hidden !line-clamp-1"
-            title={title}
+            title={tenPhim}
           >
-            {title}
+            {tenPhim}
           </Typography>
-          <Typography className="truncate whitespace-pre-line overflow-hidden !line-clamp-4 max-w-[300px]">
-            {overview}
+          <Typography className="truncate whitespace-pre-line overflow-hidden !line-clamp-4 min-h-[130px] max-w-[300px]">
+            {moTa}
           </Typography>
         </CardBody>
         <CardFooter className="pt-0 flex flex-col">
@@ -45,7 +43,7 @@ export default function MovieItem({ movie }) {
           </Button> */}
           <Button
             className="transition duration-300 group-hover:text-title-main hover:!text-rose-500"
-            onClick={() => navigate(`/details/13546`)}
+            onClick={() => navigate(`/details/${biDanh}/${maPhim}`)}
           >
             Đặt Vé
           </Button>

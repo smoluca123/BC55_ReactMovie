@@ -16,12 +16,12 @@ import { setLoading } from '../../../../redux/slices/loadingSlice';
 import useWindowSize from '../../../../hooks/useWindowSize';
 export default function ShowTimes() {
   const [showTimesData, setShowTimesData] = useState([]);
-  const [cinemas, setCinemas] = useState([]);
+  const [cinemas, setCinemas] = useState(null);
   const [activeTab, setActiveTab] = useState(null);
 
   const dispatch = useDispatch();
 
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
 
   useEffect(() => {
     const getCinemas = async () => {
@@ -55,44 +55,43 @@ export default function ShowTimes() {
       <Typography variant="h1" className="text-center text-title-main mb-4">
         Các suất chiếu
       </Typography>
-      <Tabs
-        value={activeTab || 'BHDStar'}
-        orientation={width >= 960 ? 'vertical' : 'horizontal'}
-      >
-        <TabsHeader
-          className="lg:max-h-[700px] lg:min-h-[700px] lg:overflow-y-auto overflow-x-auto lg:flex lg:flex-col flex-row rounded-none lg:border-r lg:border-b-0 border-b border-white bg-transparent p-0"
-          indicatorProps={{
-            className:
-              'bg-transparent lg:border-r-[3px] lg:border-b-0 border-b-[3px] border-title-main shadow-none rounded-none',
-          }}
+      {cinemas && (
+        <Tabs
+          value={activeTab}
+          orientation={width >= 960 ? 'vertical' : 'horizontal'}
         >
-          {cinemas.map(({ logo, maHeThongRap }) => (
-            <Tab
-              key={maHeThongRap}
-              value={maHeThongRap}
-              onClick={() => setActiveTab(maHeThongRap)}
-              className={cn(
-                ' text-lightText-main hover:opacity-50 transition-opacity duration-300',
-                {
-                  'text-title-main': activeTab === maHeThongRap,
-                }
-              )}
-            >
-              <img width={60} src={logo} alt={maHeThongRap} />
-            </Tab>
-          ))}
-        </TabsHeader>
-        <TabsBody className="">
-          {showTimesData.map(({ maHeThongRap, lstCumRap }) => (
-            // <TabPanel key={maHeThongRap} value={maHeThongRap}>
-            //   {tenHeThongRap}
-            // </TabPanel>
-            <TabPanel className="p-0" key={maHeThongRap} value={maHeThongRap}>
-              <ShowTimeItem dataCumRap={lstCumRap} />
-            </TabPanel>
-          ))}
-        </TabsBody>
-      </Tabs>
+          <TabsHeader
+            className="lg:max-h-[700px] lg:min-h-[700px] lg:overflow-y-auto overflow-x-auto lg:flex lg:flex-col flex-row rounded-none lg:border-r lg:border-b-0 border-b border-white bg-transparent p-0"
+            indicatorProps={{
+              className:
+                'bg-transparent lg:border-r-[3px] lg:border-b-0 border-b-[3px] border-title-main shadow-none rounded-none',
+            }}
+          >
+            {cinemas.map(({ logo, maHeThongRap }) => (
+              <Tab
+                key={maHeThongRap}
+                value={maHeThongRap}
+                onClick={() => setActiveTab(maHeThongRap)}
+                className={cn(
+                  ' text-lightText-main hover:opacity-50 transition-opacity duration-300',
+                  {
+                    'text-title-main': activeTab === maHeThongRap,
+                  }
+                )}
+              >
+                <img width={60} src={logo} alt={maHeThongRap} />
+              </Tab>
+            ))}
+          </TabsHeader>
+          <TabsBody className="">
+            {showTimesData.map(({ maHeThongRap, lstCumRap }) => (
+              <TabPanel className="p-0" key={maHeThongRap} value={maHeThongRap}>
+                <ShowTimeItem dataCumRap={lstCumRap} />
+              </TabPanel>
+            ))}
+          </TabsBody>
+        </Tabs>
+      )}
     </div>
   );
 }
