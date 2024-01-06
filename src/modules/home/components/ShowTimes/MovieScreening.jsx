@@ -29,15 +29,6 @@ export default function MovieScreening({ danhSachPhim }) {
             </div>
             <div className="px-4 text-white w-full">
               <div className="flex lg:flex-row lg:justify-start md:justify-center items-center text-center flex-col">
-                {/* {hot ? (
-                  <span className="px-2 py-1 lg:mr-2 rounded-lg bg-red-700 ">
-                    HOT
-                  </span>
-                ) : (
-                  <span className="px-2 py-1 lg:mr-2 rounded-lg bg-deep-purple-300 ">
-                    -{Math.floor(Math.random() * 20)}%
-                  </span>
-                )} */}
                 <span
                   className={classNames('px-2 py-1 lg:mr-2 rounded-lg', {
                     'bg-red-700': hot,
@@ -68,7 +59,7 @@ export default function MovieScreening({ danhSachPhim }) {
                         </span>{' '}
                         -{' '}
                         <span className="text-red-400">
-                          {dayjs(ngayChieuGioChieu).format('hh-mm-ss')}
+                          {dayjs(ngayChieuGioChieu).format('hh:mm')}
                         </span>
                       </Button>
                     </Link>

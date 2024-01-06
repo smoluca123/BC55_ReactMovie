@@ -9,7 +9,7 @@ import {
   Button,
 } from '@material-tailwind/react';
 export default function MovieItem({ movie }) {
-  const { tenPhim, hinhAnh, moTa } = movie;
+  const { tenPhim, hinhAnh, moTa, biDanh, maPhim } = movie;
   const navigate = useNavigate();
   return (
     <div className="mb-[40px]">
@@ -43,7 +43,7 @@ export default function MovieItem({ movie }) {
           </Button> */}
           <Button
             className="transition duration-300 group-hover:text-title-main hover:!text-rose-500"
-            onClick={() => navigate(`/details/13546`)}
+            onClick={() => navigate(`/details/${biDanh}/${maPhim}`)}
           >
             Đặt Vé
           </Button>

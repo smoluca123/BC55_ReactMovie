@@ -36,7 +36,8 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
-            <Route path="/details/:movieId" element={<Detail />} />
+            {/* Add bí danh vào path cho đẹp */}
+            <Route path="/details/:biDanh/:movieId" element={<Detail />} />
             <Route path="user" element={<User />}>
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
@@ -57,7 +58,6 @@ function App() {
                 </PrivateRoute>
               }
             />
-
             <Route
               path="/purchase/:maLichChieu"
               element={
