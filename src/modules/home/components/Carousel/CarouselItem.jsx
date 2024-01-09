@@ -35,7 +35,7 @@ export default function CarouselItem({ item }) {
     <div className="w-full relative sm:h-auto h-dvh">
       <div className="poster">
         <img
-          className="h-[100vh] _sm:h-[600px] w-full object-cover"
+          className="h-[100vh] _sm:h-[800px] w-full object-cover"
           src={item.hinhAnh}
           alt={detail?.tenPhim + 'Banner'}
         />

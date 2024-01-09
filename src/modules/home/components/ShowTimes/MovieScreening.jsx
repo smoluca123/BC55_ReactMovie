@@ -41,12 +41,15 @@ export default function MovieScreening({ danhSachPhim }) {
                   {tenPhim}
                 </Typography>
                 <span
-                  className={classNames('px-2 py-1 lg:ml-2 rounded-lg', {
-                    'bg-rose-500': sapChieu,
-                    '!bg-success': dangChieu,
-                  })}
+                  className={classNames(
+                    'px-2 py-1 lg:ml-2 rounded-lg bg-red-400',
+                    {
+                      '!bg-rose-500': sapChieu,
+                      '!bg-green-500': dangChieu,
+                    }
+                  )}
                 >
-                  {dangChieu ? 'Đang chiếu' : 'Sắp Chiếu'}
+                  {dangChieu ? 'Đang chiếu' : sapChieu ? 'Sắp Chiếu' : 'HOT'}
                 </span>
               </div>
               <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 max-h-[120px] w-full overflow-y-auto my-2 pr-2">

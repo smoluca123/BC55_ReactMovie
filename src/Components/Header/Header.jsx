@@ -10,6 +10,7 @@ import { Link as LinkScroll, animateScroll as scroll } from 'react-scroll';
 import { signOut } from '../../modules/user/slices/authSlice';
 import Swal from 'sweetalert2';
 import CustomNavLink from './CustomUI/CustomNavLink';
+import { faTruckField } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
@@ -40,6 +41,16 @@ export default function Header() {
 
   useEffect(() => {
     setIsLogin(!!currentUser);
+    if (currentUser && currentUser.maLoaiNguoiDung === 'QuanTri') {
+      setNavItem((prev) => [
+        ...prev,
+        {
+          name: 'Quản Lí',
+          href: '/admin',
+          current: false,
+        },
+      ]);
+    }
   }, [currentUser]);
 
   return (
@@ -307,29 +318,41 @@ export default function Header() {
           <div className="space-y-1 px-2 pb-3 pt-2">
             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
             {navItem &&
-              navItem.map((item, index) => (
-                <NavLink
-                  key={index}
-                  to={item.href}
-                  // className={cn(
-                  //   'block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title-main transition-colors duration-300',
-                  //   item.current
-                  //     ? 'text-title-main bg-secondaryBg-main'
-                  //     : 'text-white'
-                  // )}
-                  className={({ isActive, isPending }) =>
-                    cn(
-                      'text-center block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title-main transition-colors duration-300',
-                      {
-                        'text-title-main bg-secondaryBg-main': isActive,
-                        'text-white': !isActive && !isPending,
-                      }
-                    )
-                  }
-                >
-                  {item.name}
-                </NavLink>
-              ))}
+              navItem.map((item, index) => {
+                const result = item.href.includes('#') ? (
+                  <LinkScroll
+                    className="rounded-md w-full text-center block px-3 py-2 text-sm font-medium text-white hover:text-title-main transition-colors duration-300 cursor-pointer"
+                    to={item.href.replace('#', '')}
+                    key={index}
+                    smooth={true}
+                  >
+                    {item.name}
+                  </LinkScroll>
+                ) : (
+                  <NavLink
+                    key={index}
+                    to={item.href}
+                    // className={cn(
+                    //   'block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title-main transition-colors duration-300',
+                    //   item.current
+                    //     ? 'text-title-main bg-secondaryBg-main'
+                    //     : 'text-white'
+                    // )}
+                    className={({ isActive, isPending }) =>
+                      cn(
+                        'text-center block w-full rounded-md px-3 py-2 text-base font-medium hover:text-title-main transition-colors duration-300',
+                        {
+                          'text-title-main bg-secondaryBg-main': isActive,
+                          'text-white': !isActive && !isPending,
+                        }
+                      )
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                );
+                return result;
+              })}
           </div>
         </div>
       </nav>

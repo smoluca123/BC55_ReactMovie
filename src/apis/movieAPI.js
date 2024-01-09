@@ -18,6 +18,20 @@ const getListMoviesAPI = async () => {
   }
 };
 
+const getListMoviesPageAPI = async (page = 1, limitOnPage = 10) => {
+  try {
+    const { data } = await baseAPI.get('/QuanLyPhim/LayDanhSachPhimPhanTrang', {
+      params: {
+        soTrang: page,
+        soPhanTuTrenTrang: limitOnPage,
+      },
+    });
+    return data.content;
+  } catch (error) {
+    throw error.response?.data?.content;
+  }
+};
+
 const getDetailMovieAPI = async (id) => {
   try {
     const { data } = await baseAPI.get('/QuanLyPhim/LayThongTinPhim', {
@@ -31,4 +45,9 @@ const getDetailMovieAPI = async (id) => {
   }
 };
 
-export { getBannerMoviesAPI, getListMoviesAPI, getDetailMovieAPI };
+export {
+  getBannerMoviesAPI,
+  getListMoviesAPI,
+  getDetailMovieAPI,
+  getListMoviesPageAPI,
+};
