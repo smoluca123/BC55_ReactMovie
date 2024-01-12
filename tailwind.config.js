@@ -70,6 +70,9 @@ module.exports = withMT({
           },
         },
       },
+      transitionTimingFunction: {
+        cubic_1: 'cubic-bezier(1,.42,.54,.74)',
+      },
       screens: {
         _sm: '640px',
       },

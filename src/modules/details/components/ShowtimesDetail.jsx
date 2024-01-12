@@ -45,9 +45,12 @@ export function ShowtimesDetail({ data }) {
                         ({ ngayChieuGioChieu, maLichChieu }) => (
                           <Button
                             key={maLichChieu}
-                            className="hover:shadow-md hover:shadow-light-blue-300 mb-2"
+                            className="hover:shadow-md hover:shadow-light-blue-300 mb-2 p-0"
                           >
-                            <Link to={`/purchase/${maLichChieu}`}>
+                            <Link
+                              to={`/purchase/${maLichChieu}`}
+                              className="block px-4 py-4"
+                            >
                               <span className="text-title-main">
                                 {dayjs(ngayChieuGioChieu).format('DD/MM/YYYY')}
                               </span>{' '}

@@ -25,6 +25,10 @@ import Profile from './modules/profile/pages/Profile';
 import Detail from './modules/details/pages/Detail';
 import Purchase from './modules/purchase/pages/Purchase';
 import HistoryBooking from './modules/history/pages/HistoryBooking';
+import Admin from './modules/admin/pages/Admin';
+import AdminLayout from './modules/layout/pages/AdminLayout';
+import PrivateAdminRoute from './routers/PrivateAdminRoute';
+import MovieManagement from './modules/admin/components/MovieManagement';
 
 // Thêm icon vào thư viện
 library.add(fas, far);
@@ -67,6 +71,17 @@ function App() {
               }
             />
             <Route path="*" element={<NotFound />} />
+          </Route>
+          <Route
+            path="/admin"
+            element={
+              <PrivateAdminRoute>
+                <AdminLayout />
+              </PrivateAdminRoute>
+            }
+          >
+            <Route index element={<Admin />} />
+            <Route path="movie-management" element={<MovieManagement />} />
           </Route>
         </Routes>
       </BrowserRouter>
