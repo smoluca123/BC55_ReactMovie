@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Button,
   Dialog,
@@ -11,15 +11,15 @@ import {
   PopoverHandler,
   PopoverContent,
   Alert,
+  Typography,
 } from '@material-tailwind/react';
 import dayjs from 'dayjs';
 import { DayPicker } from 'react-day-picker';
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline';
 import { useForm } from 'react-hook-form';
-import { addMovieAPI } from '../../../../apis/movieAPI';
+import { addMovieAPI, updateMovieAPI } from '../../../../apis/movieAPI';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, date } from 'yup';
-import classNames from 'classnames';
 
 const validationSchema = object({
   tenPhim: string().required('Tên phim không được trống'),
@@ -30,16 +30,19 @@ const validationSchema = object({
   danhGia: string().required('Đánh giá không được trống'),
 });
 
-export default function DialogAddMovie({
+export default function DialogEditMovie({
   open,
   onOpen: handleOpen,
   fetchMovies,
+  selectedMovie,
 }) {
   const [date, setDate] = useState();
   const [imagePreview, setImagePreview] = useState(null);
+  const [newImage, setNewImage] = useState(null);
   const [error, setError] = useState(null);
   const inputImage = useRef();
   const submitBtn = useRef();
+  //   const { tenPhim, hinhAnh, moTa, danhGia, ngayKhoiChieu } = selectedMovie;
   const {
     register,
     handleSubmit,
@@ -74,18 +77,33 @@ export default function DialogAddMovie({
     };
   };
 
-  const handleAddMovie = async (data) => {
+  const handleEditMovie = async (data) => {
     try {
+      console.log(data);
       setError(null);
-      await addMovieAPI(data);
+      //   if (newImage) {
+      //     data.hinhAnh = newImage;
+      //   }
+      await updateMovieAPI(data);
       handleOpen();
       fetchMovies();
       reset();
+      console.log(data);
     } catch (error) {
       setError(error);
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (!selectedMovie) return;
+    for (let key in selectedMovie) {
+      setValue(key, selectedMovie[key]);
+    }
+    setImagePreview(selectedMovie.hinhAnh);
+    setDate(selectedMovie.ngayKhoiChieu);
+    trigger();
+  }, [selectedMovie]);
   return (
     <>
       <Dialog
@@ -96,11 +114,17 @@ export default function DialogAddMovie({
           unmount: { scale: 0.9, y: -100 },
         }}
       >
-        <DialogHeader>Add Movie</DialogHeader>
+        <DialogHeader>Edit Movie</DialogHeader>
         <DialogBody className="max-h-[70dvh] overflow-y-auto">
+          <Typography variant="small" color="red" className="mb-4">
+            Bug do API, Nếu cần upload ảnh mới thì vui lòng thay đổi kèm 1 field
+            bất kỳ thì ảnh mới được cập nhật, nếu chỉ thay đổi ảnh thì ảnh mới
+            sẽ không được api thay đổi!
+          </Typography>
+
           <form
             className="flex flex-col items-center gap-4"
-            onSubmit={handleSubmit(handleAddMovie)}
+            onSubmit={handleSubmit(handleEditMovie)}
           >
             <div className="flex w-full flex-col items-end gap-6">
               <Input
@@ -108,7 +132,7 @@ export default function DialogAddMovie({
                 label="Tên phim"
                 {...register('tenPhim')}
                 success={!errors.tenPhim && watch('tenPhim') !== ''}
-                error={errors.tenPhim}
+                error={!!errors.tenPhim}
               />
             </div>
             <div className="flex w-full flex-col items-end gap-6">
@@ -117,7 +141,7 @@ export default function DialogAddMovie({
                 label="Bí danh"
                 {...register('biDanh')}
                 success={!errors.biDanh && watch('biDanh') !== ''}
-                error={errors.biDanh}
+                error={!!errors.biDanh}
               />
             </div>
             <div className="flex w-full flex-col items-end gap-6">
@@ -126,7 +150,7 @@ export default function DialogAddMovie({
                 label="Trailer"
                 {...register('trailer')}
                 success={!errors.trailer && watch('trailer') !== ''}
-                error={errors.trailer}
+                error={!!errors.trailer}
               />
             </div>
             <div className="flex w-full flex-col items-center gap-6">
@@ -169,7 +193,7 @@ export default function DialogAddMovie({
                 resize={true}
                 {...register('moTa')}
                 success={!errors.moTa && watch('moTa') !== ''}
-                error={errors.moTa}
+                error={!!errors.moTa}
               />
             </div>
             <div className="flex w-full flex-col items-end gap-6">
@@ -178,7 +202,7 @@ export default function DialogAddMovie({
                 label="Đánh giá"
                 {...register('danhGia')}
                 success={!errors.danhGia && watch('danhGia') !== ''}
-                error={errors.danhGia}
+                error={!!errors.danhGia}
               />
             </div>
             <div className="flex w-full flex-col items-end gap-6">
@@ -195,7 +219,7 @@ export default function DialogAddMovie({
                     success={
                       !errors.ngayKhoiChieu && watch('ngayKhoiChieu') !== ''
                     }
-                    error={errors.ngayKhoiChieu}
+                    error={!!errors.ngayKhoiChieu}
                   />
                 </PopoverHandler>
                 <PopoverContent className="z-[99999]">

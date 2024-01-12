@@ -4,7 +4,7 @@ import { UserPlusIcon } from '@heroicons/react/24/solid';
 import {
   Card,
   CardHeader,
-  Input, 
+  Input,
   Typography,
   Button,
   CardBody,
@@ -15,10 +15,12 @@ import {
   DialogFooter,
   Select,
   Option,
+  Alert,
 } from '@material-tailwind/react';
 import {
   addUserAPI,
   getListUserPagesAPI,
+  getTypeUserAPI,
   getUserByUserNameAPI,
 } from '../../../../apis/userAPI';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -51,6 +53,7 @@ export default function UserManagement() {
   const pages = searchParams.get('pages') >= 1 ? searchParams.get('pages') : 1;
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [typesUser, setTypesUser] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(pages || 1);
   const [totalPages, setTotalPages] = useState(0);
@@ -67,6 +70,7 @@ export default function UserManagement() {
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -93,6 +97,7 @@ export default function UserManagement() {
       const content = await getListUserPagesAPI(currentPage, limitUserOnPage);
       setUsers(content.items);
       setTotalPages(content.totalPages);
+      if (currentPage > content.totalPages) setCurrentPage(content.totalPages);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -131,6 +136,8 @@ export default function UserManagement() {
       setError(null);
       await addUserAPI(data);
       toast.success('Thêm người dùng thành công');
+      handleOpen();
+      reset();
     } catch (error) {
       setError(error);
     }
@@ -145,6 +152,18 @@ export default function UserManagement() {
     // Cleanup function để clear timeout khi component unmount
     return () => clearTimeout(debounceTimeout.current);
   }, [searchTerm, debouncedSearch]);
+
+  useEffect(() => {
+    const getTypesUser = async () => {
+      try {
+        const content = await getTypeUserAPI();
+        setTypesUser(content);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getTypesUser();
+  }, []);
 
   useEffect(() => {
     getListUserPages();
@@ -289,17 +308,41 @@ export default function UserManagement() {
                 success={
                   !errors.maLoaiNguoiDung && watch('maLoaiNguoiDung') !== ''
                 }
+                error={errors.maLoaiNguoiDung}
               >
-                <Option value="KhachHang">Khách Hàng</Option>
-                <Option value="QuanTri">Quản Trị</Option>
+                {/* <Option value="KhachHang">Khách Hàng</Option>
+                <Option value="QuanTri">Quản Trị</Option> */}
+                {typesUser.map((typeUser) => {
+                  return (
+                    <Option
+                      key={typeUser.maLoaiNguoiDung}
+                      value={typeUser.maLoaiNguoiDung}
+                    >
+                      {typeUser.tenLoai}
+                    </Option>
+                  );
+                })}
               </Select>
               <select className="hidden" {...register('maLoaiNguoiDung')}>
-                <option value="KhachHang">Khách Hàng</option>
-                <option value="QuanTri">Quản Trị</option>
+                {typesUser.map((typeUser) => {
+                  return (
+                    <option
+                      key={typeUser.maLoaiNguoiDung}
+                      value={typeUser.maLoaiNguoiDung}
+                    >
+                      {typeUser.tenLoai}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <input ref={submitBtn} type="submit" hidden />
           </form>
+          {error && (
+            <Alert color="red" className="mt-2">
+              {error}
+            </Alert>
+          )}
         </DialogBody>
         <DialogFooter>
           <Button

@@ -120,6 +120,17 @@ const deleteUserAPI = async (userName) => {
     throw error.message;
   }
 };
+
+const getTypeUserAPI = async () => {
+  try {
+    const { data } = await baseAPI.get(
+      '/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung'
+    );
+    return data.content;
+  } catch (error) {
+    throw error.response?.data?.content;
+  }
+};
 export {
   signupAPI,
   signinAPI,
@@ -130,4 +141,5 @@ export {
   updateUserAPI,
   addUserAPI,
   deleteUserAPI,
+  getTypeUserAPI,
 };

@@ -1,5 +1,10 @@
-import React from 'react';
-import { EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/solid';
+import React, { useState } from 'react';
+import {
+  CalendarDaysIcon,
+  EyeIcon,
+  PencilIcon,
+  TrashIcon,
+} from '@heroicons/react/24/solid';
 
 import {
   Typography,
@@ -8,7 +13,16 @@ import {
   Chip,
 } from '@material-tailwind/react';
 import dayjs from 'dayjs';
-export default function MovieItem({ movie, classes }) {
+import toast from 'react-hot-toast';
+import { deleteMovieAPI } from '../../../../apis/movieAPI';
+export default function MovieItem({
+  movie,
+  classes,
+  fetchMovies,
+  onSelect,
+  onOpen: handleOpen,
+  onOpenDialog: handleOpenDialog,
+}) {
   const {
     tenPhim,
     biDanh,
@@ -22,6 +36,16 @@ export default function MovieItem({ movie, classes }) {
     sapChieu,
     danhGia,
   } = movie;
+
+  const handleDeleteMovie = async (id) => {
+    try {
+      await deleteMovieAPI(id);
+      await fetchMovies();
+      toast.success('Xóa thành công');
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <tr>
@@ -66,28 +90,53 @@ export default function MovieItem({ movie, classes }) {
           <img width={100} src={hinhAnh} />
         </td>
         <td>
-          <Tooltip content="Edit Movie">
-            <IconButton variant="text">
-              <PencilIcon className="h-4 w-4" />
-            </IconButton>
-          </Tooltip>
-          <Tooltip content="Edit Movie">
-            <IconButton variant="text" color="red">
-              <TrashIcon className="h-4 w-4 " />
-            </IconButton>
-          </Tooltip>
-          <Tooltip content="View Detail Movie">
-            <IconButton variant="text" color="green" className="p-0">
-              <a
-                href={`/details/${biDanh}/${maPhim}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block p-4"
+          <div className="">
+            <Tooltip content="Edit Movie">
+              <IconButton
+                variant="text"
+                onClick={() => {
+                  onSelect(movie);
+                  handleOpen();
+                }}
               >
-                <EyeIcon className="h-4 w-4" />
-              </a>
-            </IconButton>
-          </Tooltip>
+                <PencilIcon className="h-4 w-4" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip content="Add lịch chiếu">
+              <IconButton
+                variant="text"
+                onClick={() => {
+                  onSelect(movie);
+                  handleOpenDialog();
+                }}
+              >
+                <CalendarDaysIcon className="h-4 w-4" />
+              </IconButton>
+            </Tooltip>
+          </div>
+          <div className="">
+            <Tooltip content="Edit Movie">
+              <IconButton
+                variant="text"
+                color="red"
+                onClick={() => handleDeleteMovie(maPhim)}
+              >
+                <TrashIcon className="h-4 w-4 " />
+              </IconButton>
+            </Tooltip>
+            <Tooltip content="View Detail Movie">
+              <IconButton variant="text" color="green" className="p-0">
+                <a
+                  href={`/details/${biDanh}/${maPhim}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block p-4"
+                >
+                  <EyeIcon className="h-4 w-4" />
+                </a>
+              </IconButton>
+            </Tooltip>
+          </div>
         </td>
       </tr>
     </>

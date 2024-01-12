@@ -45,9 +45,37 @@ const getShowTimesMovieAPI = async (movieId) => {
     throw error.response?.data?.content;
   }
 };
+
+const createShowtimeAPI = async (showtime) => {
+  try {
+    const { data } = await baseAPI.post('/QuanLyDatVe/TaoLichChieu', showtime);
+    return data.content;
+  } catch (error) {
+    throw error.response?.data?.content;
+  }
+};
+
+// bí tiếng anh quá :))
+const getCumRapTheoHeThongRapAPI = async (maHeThongRap) => {
+  try {
+    const { data } = await baseAPI.get(
+      '/QuanLyRap/LayThongTinCumRapTheoHeThong',
+      {
+        params: {
+          maHeThongRap,
+        },
+      }
+    );
+    return data.content;
+  } catch (error) {
+    throw error.response?.data?.content;
+  }
+};
 export {
   getCinemasAPI,
   getShowTimesAPI,
   getMovieDetailsAPI,
   getShowTimesMovieAPI,
+  createShowtimeAPI,
+  getCumRapTheoHeThongRapAPI,
 };

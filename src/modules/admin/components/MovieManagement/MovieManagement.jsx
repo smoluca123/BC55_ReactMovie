@@ -18,6 +18,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import ListMovie from './ListMovie';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import DialogAddMovie from './DialogAddMovie';
+import DatePicker from '../UI/DatePicker';
+import { Toaster } from 'react-hot-toast';
 
 const TABLE_HEAD = [
   'Tên phim',
@@ -28,67 +30,15 @@ const TABLE_HEAD = [
   'Action',
 ];
 
-const TABLE_ROWS = [
-  {
-    img: 'https://docs.material-tailwind.com/img/logos/logo-spotify.svg',
-    name: 'Spotify',
-    amount: '$2,500',
-    date: 'Wed 3:00pm',
-    status: 'paid',
-    account: 'visa',
-    accountNumber: '1234',
-    expiry: '06/2026',
-  },
-  {
-    img: 'https://docs.material-tailwind.com/img/logos/logo-amazon.svg',
-    name: 'Amazon',
-    amount: '$5,000',
-    date: 'Wed 1:00pm',
-    status: 'paid',
-    account: 'master-card',
-    accountNumber: '1234',
-    expiry: '06/2026',
-  },
-  {
-    img: 'https://docs.material-tailwind.com/img/logos/logo-pinterest.svg',
-    name: 'Pinterest',
-    amount: '$3,400',
-    date: 'Mon 7:40pm',
-    status: 'pending',
-    account: 'master-card',
-    accountNumber: '1234',
-    expiry: '06/2026',
-  },
-  {
-    img: 'https://docs.material-tailwind.com/img/logos/logo-google.svg',
-    name: 'Google',
-    amount: '$1,000',
-    date: 'Wed 5:00pm',
-    status: 'paid',
-    account: 'visa',
-    accountNumber: '1234',
-    expiry: '06/2026',
-  },
-  {
-    img: 'https://docs.material-tailwind.com/img/logos/logo-netflix.svg',
-    name: 'netflix',
-    amount: '$14,000',
-    date: 'Wed 3:30am',
-    status: 'cancelled',
-    account: 'visa',
-    accountNumber: '1234',
-    expiry: '06/2026',
-  },
-];
-
 export default function MovieManagement() {
   const [searchParams] = useSearchParams();
   const [totalPages, setTotalPages] = useState(1);
   const [movies, setMovies] = useState([]);
-  const pageParam =
-    searchParams.get('page') >= 1 && searchParams.get('page') <= totalPages
-      ? searchParams.get('page')
-      : 1;
+  // const pageParam =
+  //   searchParams.get('page') >= 1 && searchParams.get('page') <= totalPages
+  //     ? searchParams.get('page')
+  //     : 1;
+  const pageParam = searchParams.get('page');
   const [currentPage, setCurrentPage] = useState(pageParam || 1);
   const [isLoading, setIsLoading] = useState(false);
   const limitOnPage = 10;
@@ -116,8 +66,7 @@ export default function MovieManagement() {
       const content = await getListMoviesPageAPI(currentPage, limitOnPage);
       setMovies(content.items);
       setTotalPages(content.totalPages);
-
-      console.log(content);
+      if (currentPage > content.totalPages) setCurrentPage(content.totalPages);
     } catch (error) {
       console.log(error);
     } finally {
@@ -179,7 +128,7 @@ export default function MovieManagement() {
               </tr>
             </thead>
             <tbody>
-              <ListMovie movies={movies} />
+              <ListMovie fetchMovies={fetchMovies} movies={movies} />
             </tbody>
           </table>
         </CardBody>
@@ -220,7 +169,13 @@ export default function MovieManagement() {
           </div>
         </CardFooter>
       </Card>
-      <DialogAddMovie open={open} onOpen={handleOpen} />
+      <DatePicker />
+      <DialogAddMovie
+        open={open}
+        onOpen={handleOpen}
+        fetchMovies={fetchMovies}
+      />
+      <Toaster position="top-right" />
     </>
   );
 }
