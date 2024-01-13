@@ -12,15 +12,18 @@ import { getDetailMovieAPI } from '../../../apis/movieAPI';
 import { Button } from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import dayjs from 'dayjs';
-import ReactPlayer from 'react-player';
 import DiaglogDetail from '../components/DiaglogDetail';
 import { ShowtimesDetail } from '../components/ShowtimesDetail';
 import { getMovieDetailsAPI } from '../../../apis/cinemaAPI';
+import { useDispatch } from 'react-redux';
+import { setLoading } from '../../../redux/slices/loadingSlice';
 
 export default function Detail() {
   const { movieId } = useParams();
   const [listCinemas, setListCinemas] = useState(null);
   const [isShowModal, setIsShowModal] = useState(false);
+  const dispatch = useDispatch();
+
   const handleToggleModal = () => {
     setIsShowModal(!isShowModal);
   };
@@ -28,10 +31,13 @@ export default function Detail() {
   useEffect(() => {
     const getDetailMovie = async () => {
       try {
+        dispatch(setLoading(true));
         const content = await getDetailMovieAPI(movieId);
         setMovie(content);
       } catch (error) {
         console.log(error);
+      } finally {
+        dispatch(setLoading(false));
       }
     };
     getDetailMovie();

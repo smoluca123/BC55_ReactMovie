@@ -20,6 +20,7 @@ import { useForm } from 'react-hook-form';
 import { addMovieAPI, updateMovieAPI } from '../../../../apis/movieAPI';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, date } from 'yup';
+import toast from 'react-hot-toast';
 
 const validationSchema = object({
   tenPhim: string().required('Tên phim không được trống'),
@@ -88,6 +89,7 @@ export default function DialogEditMovie({
       handleOpen();
       fetchMovies();
       reset();
+      toast.success('Cập nhật thành công');
       console.log(data);
     } catch (error) {
       setError(error);

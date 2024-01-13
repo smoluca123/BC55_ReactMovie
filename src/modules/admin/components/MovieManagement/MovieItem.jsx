@@ -44,6 +44,7 @@ export default function MovieItem({
       toast.success('Xóa thành công');
     } catch (error) {
       console.log(error);
+      toast.error(error);
     }
   };
   return (
