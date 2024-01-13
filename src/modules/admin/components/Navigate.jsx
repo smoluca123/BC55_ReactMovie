@@ -16,13 +16,23 @@ import {
   FilmIcon,
   UserIcon,
 } from '@heroicons/react/24/solid';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../../user/slices/authSlice';
+import toast from 'react-hot-toast';
 
 export default function Navigate() {
   const [open, setOpen] = useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(signOut());
+    toast.success('Bạn đã đăng xuất thành công');
+    navigate('/');
+  };
 
   return (
     <>
@@ -57,15 +67,7 @@ export default function Navigate() {
           </IconButton>
         </div>
         <List>
-          <Link
-            to="/admin"
-            // className={({ isActive, isPending }) => {
-            //   return classNames({
-            //     'bg-mainBg-main text-title-main rounded-md':
-            //       isActive && !isPending,
-            //   });
-            // }}
-          >
+          <Link to="/admin">
             <ListItem>
               <ListItemPrefix>
                 <UserIcon className="h-5 w-5" />
@@ -90,14 +92,16 @@ export default function Navigate() {
               Quản lí phim
             </ListItem>
           </NavLink>
-          <ListItem>
-            <ListItemPrefix>
-              <BackwardIcon className="w-5 h-5" />
-            </ListItemPrefix>
-            Về trang chủ
-          </ListItem>
+          <Link to="/">
+            <ListItem>
+              <ListItemPrefix>
+                <BackwardIcon className="w-5 h-5" />
+              </ListItemPrefix>
+              Về trang chủ
+            </ListItem>
+          </Link>
         </List>
-        <Button className="mt-3 ml-5" size="sm">
+        <Button className="mt-3 ml-5" size="sm" onClick={handleLogout}>
           Đăng xuất
         </Button>
       </Drawer>
